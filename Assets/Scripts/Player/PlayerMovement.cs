@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
 
     public float speed = 12f;
-    public float gravity = -9.81f;
+    public float gravity = -19.62f;
     public float jumpHeight = 3f;
 
     public Transform groundCheck;
@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     Vector3 velocity;
-    bool isGrounded;
+    bool isGrounded = false;
 
     // Start is called before the first frame update
     void Start()

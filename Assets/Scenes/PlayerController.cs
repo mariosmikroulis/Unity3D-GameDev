@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    public Vector2 moveValue;
+    public float speed = 500;
+
+    void onMove(InputValue value) {
+    	moveValue = value.Get<Vector2>();
+    }
+
+    void FixedUpdate(){
+    	Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
+    	Debug.Log(movement);
+    	GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
+    }
+}

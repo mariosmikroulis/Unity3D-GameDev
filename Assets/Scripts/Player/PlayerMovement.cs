@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && isGrounded) {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            currentSpeed = speed / 2;
+            currentSpeed = (float)(speed * 0.7);
         }
 
         Vector3 move = transform.right * x + transform.forward * z;

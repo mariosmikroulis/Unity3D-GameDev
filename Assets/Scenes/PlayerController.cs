@@ -15,14 +15,36 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate(){
-         Vector3 facingDirection = transform.forward;
-    	// Vector3 movement = new Vector3(moveValue.x * speed, 0.0f, moveValue.y * speed);
-        Vector3 movement = new Vector3(facingDirection.x * speed, 0.0f, facingDirection.z * speed);
-    	Vector3 newPos = (GetComponent<Rigidbody>().position + movement);
-    	GetComponent<Rigidbody>().position = newPos;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        Vector3 forwardDir = new Vector3(forward.x, 0, forward.z).normalized;
+        Vector3 rightDir = new Vector3(right.x, 0, right.z).normalized;
+
+        if (Input.GetKey("w"))
+        {
+            GetComponent<Rigidbody>().AddForce(forwardDir * 350f * Time.deltaTime,
+                 ForceMode.VelocityChange);
+        }
+        if (Input.GetKey("a"))
+        {
+            GetComponent<Rigidbody>().AddForce(rightDir * -250f * Time.deltaTime,
+                 ForceMode.VelocityChange);
+        }
+        if (Input.GetKey("s"))
+        {
+            GetComponent<Rigidbody>().AddForce(forwardDir * -250f * Time.deltaTime,
+                 ForceMode.VelocityChange);
+        }
+        if (Input.GetKey("d"))
+        {
+            GetComponent<Rigidbody>().AddForce(rightDir * 250f * Time.deltaTime,
+                 ForceMode.VelocityChange);
+        }
    
-    	mouseMovement.x += Input.GetAxis("Mouse X")*12;
+    	mouseMovement.x += Input.GetAxis("Mouse X")*220;
         mouseMovement.y += Input.GetAxis("Mouse Y")*12;
-        transform.localRotation = Quaternion.Euler(0, mouseMovement.x,0);
+        transform.localRotation = Quaternion.Euler(0, mouseMovement.x*Time.deltaTime,0);
     }
 }

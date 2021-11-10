@@ -2,16 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Vector2 moveValue;
     public float speed;
     Vector2 mouseMovement;
+    bool oxygenArea = false;
+    public Text oxygenText;
 
     void OnMove(InputValue value) {
     	moveValue = value.Get<Vector2>();
     	Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "Oxygen"){
+            oxygenArea = true;
+        }
+    }
+    void OnTriggerExit(Collider other) {
+        if(other.gameObject.tag == "Oxygen"){
+            oxygenArea = false;
+        }
     }
 
     void FixedUpdate(){
@@ -41,6 +55,12 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(rightDir * 250f * Time.deltaTime,
                  ForceMode.VelocityChange);
+        }
+        if (Input.GetKey("f"))
+        {
+            if(oxygenArea){
+                oxygenText.text = "Oxygen: 100";
+            }
         }
    
     	mouseMovement.x += Input.GetAxis("Mouse X")*220;

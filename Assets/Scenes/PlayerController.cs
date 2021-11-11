@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         }
    
     	mouseMovement.x += Input.GetAxis("Mouse X")*350;
-        mouseMovement.y += Input.GetAxis("Mouse Y")*12;
+        // mouseMovement.y += Input.GetAxis("Mouse Y")*175;
         transform.localRotation = Quaternion.Euler(0, mouseMovement.x*Time.deltaTime,0);
     }
 }

@@ -9,7 +9,7 @@ public class OxygenController : MonoBehaviour
 
     
 	public Text oxygenText;
-    float timer = 10.0f;
+    public float timer = 10.0f;
 
 
     // Start is called before the first frame update

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Oxygen
+  - Issue1
+  - Issue2
+  - Door
   layers:
   - Default
   - TransparentFX

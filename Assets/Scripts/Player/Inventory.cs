@@ -13,6 +13,11 @@ public class Inventory : MonoBehaviour
 
         // Register all allItems here.
         allItems.Add(createItem("gold", "Gold", "This gold is a material to be used for something."));
+        allItems.Add(createItem("silver", "Silver", "This silver is a material to be used for something."));
+        allItems.Add(createItem("stone", "Stone", "This stone is a material to be used for something."));
+        allItems.Add(createItem("axe", "Axe Pickup", "The axe is used for mining."));
+        allItems.Add(createItem("shovel", "Shovel", "The shovel is used for looking for rare materials."));
+        allItems.Add(createItem("tourch", "Tourch", "This is used to make your area brighter."));
     }
 
     private InventoryItem createItem(string id, string name, string description) {

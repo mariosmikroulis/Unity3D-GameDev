@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public Text oxygenText;
     public OxygenController controller;
 
+    public Text announcementsText;
+
     void OnMove(InputValue value) {
     	moveValue = value.Get<Vector2>();
     	Cursor.lockState = CursorLockMode.Locked;
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
             oxygenArea = true;
+            announcementsText.text = "Press F to get Oxygen";
         }
         if(other.gameObject.tag == "Issue1"){
             issue1Area = true;
@@ -39,12 +42,14 @@ public class PlayerController : MonoBehaviour
         }
         if(other.gameObject.tag == "Door"){
             doorArea = true;
+            announcementsText.text = "Press F to go outside";
         }
 
     }
     void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
             oxygenArea = false;
+            announcementsText.text = "";
         }
         if(other.gameObject.tag == "Issue1"){
             issue1Area = false;
@@ -54,6 +59,7 @@ public class PlayerController : MonoBehaviour
         }
         if(other.gameObject.tag == "Door"){
             doorArea = false;
+            announcementsText.text = "";
         }
     }
 
@@ -111,7 +117,7 @@ public class PlayerController : MonoBehaviour
             }
         }
    
-    	mouseMovement.x += Input.GetAxis("Mouse X")*220;
+    	mouseMovement.x += Input.GetAxis("Mouse X")*350;
         mouseMovement.y += Input.GetAxis("Mouse Y")*12;
         transform.localRotation = Quaternion.Euler(0, mouseMovement.x*Time.deltaTime,0);
     }

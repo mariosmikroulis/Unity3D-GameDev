@@ -6,6 +6,7 @@ public static class Generic
 {
     public static Vector3 enterance {get; set;}
     public static Inventory inventory {get; set;}
+    public static int difficultyLevelSet = 0;
 
     public static Inventory getInventory() {
         if(inventory == null) {

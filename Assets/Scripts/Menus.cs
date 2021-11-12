@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Menus : MonoBehaviour
 {
+    // Where are all the UIs be based on? Which parrent?
     public Transform canvas;
-    private bool isOnMainScreen = false;
-    private bool isPauseMenuOn = false;
-    private bool forcePause = true;
+    private bool isOnMainScreen = false; // check if is in main screen.
+    private bool isPauseMenuOn = false; // can exit from the game being paused.
+    private bool forcePause = false; // forces the player to be paused.
     
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,8 @@ public class Menus : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    // actions to do when player wins
+    // gameObject.SendMessage("playerWonGame");
     public void playerWonGame() {
         forcePause = true;
         Time.timeScale = 0;
@@ -55,7 +58,9 @@ public class Menus : MonoBehaviour
         canvas.gameObject.transform.Find("WonMenu").gameObject.SetActive(true);
     }
 
-    public void playerLost() {
+    // actions to do when player loses
+    // gameObject.SendMessage("playerLostGame");
+    public void playerLostGame() {
         forcePause = true;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;

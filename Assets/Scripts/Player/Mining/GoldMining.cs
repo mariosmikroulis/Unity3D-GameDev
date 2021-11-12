@@ -7,6 +7,10 @@ public class GoldMining : Mining
     public string _materialName = "gold";
     public float _respawnTime = 10.0f;
 
+
+    // ----------------------------------------------
+    // Pickup Rates
+    // ----------------------------------------------
     public float _easyPickupTime = 3.0f;
     public float _mediumPickupTime = 6.0f;
     public float _hardPickupTime = 10.0f;

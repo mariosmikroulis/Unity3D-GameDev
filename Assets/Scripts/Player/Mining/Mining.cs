@@ -90,8 +90,6 @@ public class Mining : MonoBehaviour
 
         actionText.text = "YOU ARE MINING...";
 
-        Debug.Log(1);
-
         // Delays depending on the difficulty level.
         if(Generic.difficultyLevelSet == 0) {
             yield return new WaitForSeconds(easyPickupTime);
@@ -105,27 +103,17 @@ public class Mining : MonoBehaviour
             yield return new WaitForSeconds(hardPickupTime);
         }
 
-        Debug.Log(2);
-
         // Give the necessary reward if the player is still in the area
         if(isInArea) {
-            Debug.Log(4);
             StartCoroutine(reward());
-            
-            Debug.Log(5);
             // Hide the game object so we can hide it below for a few seconds.
             gameObject.transform.parent.gameObject.transform.Find("Model").gameObject.SetActive(false);
-
-            Debug.Log(6);
             // delay certain seconds
             yield return new WaitForSeconds(respawnTime);
 
-            Debug.Log(7);
             // reappear the stone.
             gameObject.transform.parent.gameObject.transform.Find("Model").gameObject.SetActive(true);
         }
-
-        Debug.Log(3);
 
         isMining = false;
     }

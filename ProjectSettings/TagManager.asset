@@ -8,6 +8,7 @@ TagManager:
   - Issue1
   - Issue2
   - Door
+  - MysteryBox
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Player
   - Ground
   - 
   - 

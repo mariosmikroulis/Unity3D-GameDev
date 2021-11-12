@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     bool issue2Area = false;
     bool doorArea = false;
 
+    bool touchingFloor = true;
+
     public Text oxygenText;
     public OxygenController oxygenController;
 
@@ -46,6 +48,15 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    void OnCollisionStay(){
+        touchingFloor = true;
+    }
+    
+    void OnCollisionExit(){
+        touchingFloor = false;
+    }
+    
     void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
             oxygenArea = false;
@@ -64,6 +75,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate(){
+        Vector3 downDir = new Vector3(0, -1, 0).normalized;
+
         GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         Vector3 forward = Camera.main.transform.forward;
@@ -71,6 +84,7 @@ public class PlayerController : MonoBehaviour
         Vector3 downDir = new Vector3(0,-0.5f,0).normalized;
         Vector3 forwardDir = new Vector3(forward.x, 0, forward.z).normalized;
         Vector3 rightDir = new Vector3(right.x, 0, right.z).normalized;
+        Vector3 upDir = new Vector3(0, 1, 0).normalized;
 
         GetComponent<Rigidbody>().AddForce(downDir,ForceMode.VelocityChange);
 
@@ -94,10 +108,15 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(rightDir * 250f * Time.deltaTime,
                  ForceMode.VelocityChange);
         }
+        if (Input.GetKey("space"))
+        {
+            GetComponent<Rigidbody>().AddForce(upDir * 250f * Time.deltaTime,
+                 ForceMode.VelocityChange);
+        }
         if (Input.GetKey("f"))
         {
             if(doorArea){
-                SceneManager.LoadScene("SceneOutside", LoadSceneMode.Additive);
+                transform.position = new Vector3(2.5f, 14, 36);
                 doorArea = false;
             }
             if(oxygenArea){

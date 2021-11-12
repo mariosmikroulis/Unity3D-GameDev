@@ -56,7 +56,7 @@ public class MysteryBoxScript : MonoBehaviour
         if(axe) return;
 
         System.Random random = new System.Random(); 
-        int rand = random.Next(1, 3);
+        int rand = random.Next(1, 4);
         if(rand == 1){
             Generic.getInventory().addItem("fuel", 1);
             announcementsText.text = "You found 10 litres of rocket fuel!";

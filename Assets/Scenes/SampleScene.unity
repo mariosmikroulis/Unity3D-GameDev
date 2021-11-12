@@ -408,8 +408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5bffd3360404751b01845ece7b2711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygenText: {fileID: 60652031}
   timer: 10
+  oxygenText: {fileID: 60652031}
 --- !u!1 &118583672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,7 +1311,7 @@ MonoBehaviour:
   moveValue: {x: 0, y: 0}
   speed: 0.05
   oxygenText: {fileID: 60652031}
-  controller: {fileID: 60652033}
+  oxygenController: {fileID: 0}
   announcementsText: {fileID: 931167895}
 --- !u!54 &871182325
 Rigidbody:
@@ -1516,6 +1516,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1618,6 +1619,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &963194231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b7896a153f4124495003f6a9261f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 300
+  playerBody: {fileID: 871182322}
 --- !u!1 &1126064537
 GameObject:
   m_ObjectHideFlags: 0

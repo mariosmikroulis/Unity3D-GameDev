@@ -7,7 +7,7 @@ public class CameraHandler : MonoBehaviour
     public float mouseSensitivity = 300f;
     float x_rotation = 0f;
 
-    // public Transform playerBody;
+    public Transform playerBody;
  
     void Start()
     {

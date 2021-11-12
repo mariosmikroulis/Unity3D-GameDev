@@ -95,7 +95,7 @@ public class Menus : MonoBehaviour
 
     // Load the Game Scene.
     public void GoToMainScene() {
-        canvas.gameObject.transform.Find("Intro04").gameObject.SetActive(false); 
+        //canvas.gameObject.transform.Find("Intro04").gameObject.SetActive(false);
         SceneManager.LoadScene("SceneOutside");
     }
 }

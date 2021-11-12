@@ -48,7 +48,6 @@ public class MysteryBoxScript : MonoBehaviour
 
     //Gives the player a random item (fuel,pump,chip)
     void GiveRandomItem(){
-        bool hasAxe = false;
         bool axe = false;
         if(!Generic.hasAxe){
             axe = GiveAxe();
@@ -59,17 +58,20 @@ public class MysteryBoxScript : MonoBehaviour
         int rand = random.Next(1, 4);
         if(rand == 1){
             Generic.getInventory().addItem("fuel", 1);
-            announcementsText.text = "You found 10 litres of rocket fuel!";
+            announcementsText.text = "You found 10 fuel tanks!";
+            Generic.fuel += 10;
             return;
         }
         if(rand == 2){
             Generic.getInventory().addItem("pump", 1);
             announcementsText.text = "You found a fuel pump!";
+            Generic.hasPump = true;
             return;
         }
         if(rand == 3){
             Generic.getInventory().addItem("chip", 1);
             announcementsText.text = "You found a chip!";
+            Generic.hasChip = true;
             return;
         }
     }

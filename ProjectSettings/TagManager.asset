@@ -9,6 +9,11 @@ TagManager:
   - Issue2
   - Door
   - MysteryBox
+  - Issue3
+  - DoorOutside
+  - Disabled
+  - IssueGold
+  - IssueSilver
   layers:
   - Default
   - TransparentFX

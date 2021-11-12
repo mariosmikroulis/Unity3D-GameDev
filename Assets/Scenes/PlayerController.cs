@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     bool doorArea = false;
 
     public Text oxygenText;
-    public OxygenController controller;
+    public OxygenController oxygenController;
 
     public Text announcementsText;
 
@@ -68,8 +68,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
+        Vector3 downDir = new Vector3(0,-0.5f,0).normalized;
         Vector3 forwardDir = new Vector3(forward.x, 0, forward.z).normalized;
         Vector3 rightDir = new Vector3(right.x, 0, right.z).normalized;
+
+        GetComponent<Rigidbody>().AddForce(downDir,ForceMode.VelocityChange);
 
         if (Input.GetKey("w"))
         {
@@ -99,7 +102,7 @@ public class PlayerController : MonoBehaviour
             }
             if(oxygenArea){
                 oxygenText.text = "Oxygen: 100";
-                controller.timer = 10.0f;
+                oxygenController.timer = 10.0f;
             }
             if(issue1Area){
                 if(issue1Fixer){
@@ -118,7 +121,8 @@ public class PlayerController : MonoBehaviour
         }
    
     	mouseMovement.x += Input.GetAxis("Mouse X")*350;
-        // mouseMovement.y += Input.GetAxis("Mouse Y")*175;
-        transform.localRotation = Quaternion.Euler(0, mouseMovement.x*Time.deltaTime,0);
+        mouseMovement.y += Input.GetAxis("Mouse Y")*-175;
+        float y = Mathf.Clamp(mouseMovement.y*Time.deltaTime,-40,40);
+        transform.localRotation = Quaternion.Euler(y, mouseMovement.x*Time.deltaTime,0);
     }
 }

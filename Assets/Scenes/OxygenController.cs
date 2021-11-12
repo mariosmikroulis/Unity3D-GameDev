@@ -6,13 +6,9 @@ using System.Timers;
 
 public class OxygenController : MonoBehaviour
 {
-
-    
-	public Text oxygenText;
     public float timer = 10.0f;
+    public Text oxygenText;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         oxygenText.text = "Oxygen: 100";
@@ -21,8 +17,8 @@ public class OxygenController : MonoBehaviour
     void Update(){
         timer -= Time.deltaTime;
         if(timer<=0){
-            int oxyLevel = int.Parse(oxygenText.text.Replace("Oxygen: ", ""))-1;
-            oxygenText.text = "Oxygen: " + oxyLevel;
+            Generic.oxygenLevel -=1;
+            oxygenText.text = "Oxygen: " + Generic.oxygenLevel;
             timer = 10.0f;
         }
     }

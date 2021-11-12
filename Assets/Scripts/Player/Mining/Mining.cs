@@ -41,12 +41,6 @@ public class Mining : MonoBehaviour
     protected int minDropHard = 1;
     protected int maxDropHard = 2;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("mining");
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -66,7 +60,7 @@ public class Mining : MonoBehaviour
         if(hasAxe)
             actionText.text = "PRESS [F] TO MINE " + item.getName().ToUpper() + ".";
         else
-            actionText.text = "YOU NEED A MINING AXE TO MINE THE " + item.getName().ToUpper() + " MATERIAL.";
+            actionText.text = "YOU NEED A MINING AXE TO MINE THE " + item.getName().ToUpper() + " MATERIAL. TRY TO FIND IT SOMEWHERE!";
 
         actionText.enabled = true;
     }
@@ -141,8 +135,6 @@ public class Mining : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
 
         // hide the text, if it is still the same, and hasn't changed.
-        Debug.Log("test");
-        
         if(actionText.text == txt) {
             actionText.text = "";
             actionText.enabled = false;

@@ -8,10 +8,9 @@ public class SceneTeleportation : MonoBehaviour
 {
     // teleportationId so we know where to teleport the player.
     public int teleportationId = 0;
-    public bool isOnTheOutside = true;
+    public bool isOutside = false;
     public Text actionText;
-
-    private bool isOnShipPortal = false;
+    private bool isOnAnyPortal = false;
 
 
     // Start is called before the first frame update
@@ -23,34 +22,34 @@ public class SceneTeleportation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isOnShipPortal && Input.GetKeyUp(KeyCode.E)) {
-            if(isOnTheOutside) {
-                // Load the scene with the spaceship.
-                Generic.enterance = GameObject.FindGameObjectWithTag("Player").transform.position;
-                SceneManager.LoadScene("SampleScene");
+        // Is player on any portal environment and pressed F?
+        if(isOnAnyPortal && Input.GetKeyUp(KeyCode.F)) {
+            // Get the current player location and store it temporarily.
+            Vector3 tempLoc = GameObject.FindGameObjectWithTag("Player").transform.position;
 
-            } else {
-                // Load the outside scene and set the location on where the place is meant to be.
-                SceneManager.LoadScene("SampleScene");
-                
-                if(Generic.enterance == null) {
-                    GameObject.FindGameObjectWithTag("Player").transform.position = GameObject.FindGameObjectWithTag("MainShip").transform.position;
-                }
 
-                else {
-                    
-                }
+            // if the player has teleported again, then use the teleport loc, where he was firstly teleported.
+            if(Generic.enterance != null) {
+                GameObject.FindGameObjectWithTag("Player").transform.position = Generic.enterance;
             }
+
+
+            // probably it is a new game. Just get the coordinates of the main ship, where the player supposed to spawn.
+            else {
+                GameObject.FindGameObjectWithTag("Player").transform.position = GameObject.FindGameObjectWithTag("MainShip").transform.Find("DoorArea").transform.position;
+            }
+
+            // store the player location
+            Generic.enterance = tempLoc;
+
+            // just change it from false to true or vice versa (contrudiction).
+            isOutside = !isOutside;
         }
     }
 
+    // Checking things like 
     private bool makeGenericChecks(Collider other) {
         if(!other.CompareTag("Player")) {
-            return false;
-        }
-
-        if(teleportationId == 0) {
-            Debug.LogError("You haven't entered a sufficient teleportation ID, therefore, this action was not successful!");
             return false;
         }
 
@@ -68,11 +67,11 @@ public class SceneTeleportation : MonoBehaviour
             return;
         }
 
-        isOnShipPortal = true;
+        isOnAnyPortal = true;
         
         actionText.text = "PRESS [E] TO EXIT THE SPACESHIP.";
 
-        if(isOnTheOutside) {
+        if(isOutside) {
             actionText.text = "PRESS [E] TO ENTER THE SPACESHIP";
         }
 
@@ -85,7 +84,7 @@ public class SceneTeleportation : MonoBehaviour
             return;
         }
 
-        isOnShipPortal = false;
+        isOnAnyPortal = false;
         actionText.enabled = false;
         actionText.text = "";
     }

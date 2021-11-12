@@ -52,6 +52,11 @@ public class Mining : MonoBehaviour
 
     // has our player exited our collider?
     private void OnTriggerEnter(Collider other) {
+        // Is our collider a player?
+        if(!other.CompareTag("Player")) {
+            return;
+        }
+        
         isInArea = true;
 
         hasAxe = Generic.getInventory().hasItem("axe", 1);

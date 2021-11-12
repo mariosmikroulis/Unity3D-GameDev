@@ -6,7 +6,7 @@ using System.Timers;
 
 public class OxygenController : MonoBehaviour
 {
-    public float timer = 10.0f;
+    public float timer = 4.0f;
     public Text oxygenText;
 
     void Start()
@@ -15,11 +15,14 @@ public class OxygenController : MonoBehaviour
     }
 
     void Update(){
+        if(Generic.oxygenLevel <= 0){
+            //Lose
+        }
         timer -= Time.deltaTime;
         if(timer<=0){
             Generic.oxygenLevel -=1;
             oxygenText.text = "Oxygen: " + Generic.oxygenLevel;
-            timer = 10.0f;
+            timer = 4.0f;
         }
     }
 }

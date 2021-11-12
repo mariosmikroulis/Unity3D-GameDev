@@ -35,7 +35,6 @@ public class MysteryBoxScript : MonoBehaviour
         }
         if(Input.GetKey("f") && active && inArea){
             active = false;
-            Debug.Log("+");
             GiveRandomItem();
             timer = 3.0f;
         }

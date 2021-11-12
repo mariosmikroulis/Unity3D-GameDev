@@ -75,6 +75,7 @@ public class MysteryBoxScript : MonoBehaviour
         }
     }
 
+    // Gives the axe to the player after 3 faileed tries (important item)
     bool GiveAxe(){
         if(Generic.axeTries == 3){
             Generic.getInventory().addItem("axe", 1);

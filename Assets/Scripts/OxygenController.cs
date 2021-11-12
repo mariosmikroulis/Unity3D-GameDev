@@ -6,7 +6,7 @@ using System.Timers;
 
 public class OxygenController : MonoBehaviour
 {
-    public float timer = 4.0f;
+    public float timer = 3.0f;
     public Text oxygenText;
 
     void Start()
@@ -14,15 +14,16 @@ public class OxygenController : MonoBehaviour
         oxygenText.text = "Oxygen: 100";
     }
 
+    // Controlls oxygen level and ends game when its 0
     void Update(){
         if(Generic.oxygenLevel <= 0){
-            //Lose
+            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerLostGame");
         }
         timer -= Time.deltaTime;
         if(timer<=0){
-            Generic.oxygenLevel -=1;
+            Generic.oxygenLevel -= 1;
             oxygenText.text = "Oxygen: " + Generic.oxygenLevel;
-            timer = 4.0f;
+            timer = 3.0f;
         }
     }
 }

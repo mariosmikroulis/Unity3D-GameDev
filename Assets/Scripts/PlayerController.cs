@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     	Cursor.lockState = CursorLockMode.Locked;
     }
 
+    // All areas which thee playe can inteact with
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
             oxygenArea = true;
@@ -84,6 +85,7 @@ public class PlayerController : MonoBehaviour
         touchingFloor = false;
     }
 
+
     void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
             oxygenArea = false;
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Player Movement and Interactions
     void FixedUpdate(){
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -223,8 +226,8 @@ public class PlayerController : MonoBehaviour
                     announcementsText.text = "You need a Pump to place here";
                 }
             }
-            if(Generic.tasksCompleted == 5){
-                Debug.Log("You win!");
+            if(Generic.pumpCompleted && Generic.chipCompleted && Generic.fuelCompleted && Generic.goldCompleted && Generic.silverCompleted){
+                GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerWonGame");
             }
         }
    

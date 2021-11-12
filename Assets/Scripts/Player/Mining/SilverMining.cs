@@ -46,7 +46,5 @@ public class SilverMining : Mining
 
         minDropHard = _minDropHard;
         maxDropHard = _maxDropHard;
-
-        Generic.getInventory().addItem("axe", 1);
     }
 }

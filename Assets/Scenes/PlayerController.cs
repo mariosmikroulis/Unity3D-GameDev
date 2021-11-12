@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     bool issue2Area = false;
     bool doorArea = false;
 
-    // bool touchingFloor = true;
+    bool touchingFloor = true;
 
     public Text oxygenText;
     public OxygenController oxygenController;
@@ -49,13 +49,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // void OnCollisionStay(){
-    //     touchingFloor = true;
-    // }
+    void OnCollisionStay(){
+        touchingFloor = true;
+    }
     
-    // void OnCollisionExit(){
-    //     touchingFloor = false;
-    // }
+    void OnCollisionExit(){
+        touchingFloor = false;
+    }
 
     void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
@@ -107,7 +107,9 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey("space"))
         {
-            
+            if(!touchingFloor) return;
+            GetComponent<Rigidbody>().AddForce(upDir * 1500f * Time.deltaTime,
+                 ForceMode.Impulse);
         }
         if (Input.GetKey("f"))
         {

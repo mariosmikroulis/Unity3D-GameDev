@@ -30,20 +30,20 @@ public class MysteryBoxScript : MonoBehaviour
 
 
     void Update(){
-        // if(timer != 0.0f){
-        //     timer -= Time.deltaTime;
-        // }
+        if(timer != 0.0f){
+            timer -= Time.deltaTime;
+        }
         if(Input.GetKey("f") && active && inArea){
             active = false;
             Debug.Log("+");
             GiveRandomItem();
             timer = 3.0f;
         }
-        // if(timer<0){
-        //     if(announcementsText.text == "Press F to open the box") return;
-        //     announcementsText.text = "";
-        //     timer = 0.0f;
-        // }
+        if(timer<0){
+            if(announcementsText.text == "Press F to open the box") return;
+            announcementsText.text = "";
+            timer = 0.0f;
+        }
     }
 
     //Gives the player a random item (fuel,pump,chip)

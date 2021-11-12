@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
     // This is the list of all the itemstems of the game.
-    private static List<InventoryItem> allItems;
+    private List<InventoryItem> allItems;
 
-    void Start() {
+    public Inventory() {
         // get started with the variables.
         allItems = new List<InventoryItem>();
 
         // Register all allItems here.
+        allItems.Add(createItem("unknown", "Unknown Item", "If you see this item, then something goes wrong."));
+
         allItems.Add(createItem("gold", "Gold", "This gold is a material to be used for something."));
         allItems.Add(createItem("silver", "Silver", "This silver is a material to be used for something."));
         allItems.Add(createItem("stone", "Stone", "This stone is a material to be used for something."));

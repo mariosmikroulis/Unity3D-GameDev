@@ -121,8 +121,8 @@ public class PlayerController : MonoBehaviour
         }
    
     	mouseMovement.x += Input.GetAxis("Mouse X")*350;
-        mouseMovement.y += Input.GetAxis("Mouse Y")*-175;
-        float y = Mathf.Clamp(mouseMovement.y*Time.deltaTime,-40,40);
-        transform.localRotation = Quaternion.Euler(y, mouseMovement.x*Time.deltaTime,0);
+        // mouseMovement.y += Input.GetAxis("Mouse Y")*-175;
+        // float y = Mathf.Clamp(mouseMovement.y*Time.deltaTime,-40,40);
+        transform.localRotation = Quaternion.Euler(0, mouseMovement.x*Time.deltaTime,0);
     }
 }

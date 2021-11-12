@@ -19,7 +19,10 @@ public class Inventory
         allItems.Add(createItem("stone", "Stone", "This stone is a material to be used for something."));
         allItems.Add(createItem("axe", "Axe Pickup", "The axe is used for mining."));
         allItems.Add(createItem("shovel", "Shovel", "The shovel is used for looking for rare materials."));
-        allItems.Add(createItem("tourch", "Tourch", "This is used to make your area brighter."));
+        allItems.Add(createItem("torch", "Torch", "This is used to make your area brighter."));
+        allItems.Add(createItem("fuel", "Fuel", "Energy for your ship."));
+        allItems.Add(createItem("pump", "Pump", "Used to pump the fuel to the combustion chamber."));
+        allItems.Add(createItem("chip", "Chip", "Controls the electronics of your ship."));
     }
 
     private InventoryItem createItem(string id, string name, string description) {

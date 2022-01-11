@@ -21,6 +21,8 @@ public static class Generic
     public static bool goldCompleted = false;
     public static bool silverCompleted = false;
     public static int tasksCompleted = 0;
+
+    public static LocationArea locationArea = LocationArea.MainShip;
     // public static bool hasShovel = false;
 
 
@@ -30,5 +32,34 @@ public static class Generic
         }
 
         return inventory;
+    }
+
+
+    public static float reduceOxygen(float amount) {
+        float old = oxygenLevel;
+        oxygenLevel -= amount;
+        GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setOxygenText", oxygenLevel);
+        return oxygenLevel;
+    }
+
+    public static float setOxygen(float amount) {
+        float old = oxygenLevel;
+        oxygenLevel = amount;
+        GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setOxygenText", oxygenLevel);
+        return oxygenLevel;
+    }
+
+    public static float getOxygen() {
+        return oxygenLevel;
+    }
+
+    public static LocationArea getLocationArea() {
+        return locationArea;
+    }
+
+    public static LocationArea setLocationArea(LocationArea area) {
+        LocationArea old = locationArea;
+        locationArea = area;
+        return old;
     }
 }

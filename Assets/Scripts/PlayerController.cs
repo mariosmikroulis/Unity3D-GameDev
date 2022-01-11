@@ -167,14 +167,15 @@ public class PlayerController : MonoBehaviour
             if(doorArea){
                 transform.position = new Vector3(-2f, 14, 36);
                 doorArea = false;
+                Generic.setLocationArea(LocationArea.World);
             }
             if(doorAreaOutside){
                 transform.position = new Vector3(193.9f, 2.4f, 0.14f);
-                doorArea = false;
+                doorAreaOutside = false;
+                Generic.setLocationArea(LocationArea.MainShip);
             }
             if(oxygenArea){
-                oxygenText.text = "Oxygen: 100";
-                oxygenController.timer = 10.0f;
+                Generic.setOxygen(100);
             }
             if(issue1Area){
                 if(Generic.fuel>=20){

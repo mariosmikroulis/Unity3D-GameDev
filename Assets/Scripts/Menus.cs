@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Menus : MonoBehaviour
@@ -91,6 +92,10 @@ public class Menus : MonoBehaviour
     public void ShowStory4() {
         canvas.gameObject.transform.Find("Intro03").gameObject.SetActive(false);
         canvas.gameObject.transform.Find("Intro04").gameObject.SetActive(true);
+    }
+
+    public void setOxygenText(float lvl) {
+        canvas.gameObject.transform.Find("Oxygen").gameObject.GetComponent<UnityEngine.UI.Text>().text = "Oxygen: " + lvl + "%";
     }
 
     // Load the Game Scene.

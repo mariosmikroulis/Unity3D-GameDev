@@ -8,6 +8,10 @@ public static class Generic
     public static Inventory inventory {get; set;}
     public static int difficultyLevelSet = 0;
     public static float oxygenLevel = 100;
+    public static float maxOxygen = 100;
+
+    public static float curHealth = 1000;
+    public static float maxHealth = 1000;
     public static int axeTries = 0;
     public static bool hasAxe = false;
     public static bool hasChip = false;
@@ -34,23 +38,40 @@ public static class Generic
         return inventory;
     }
 
-
-    public static float reduceOxygen(float amount) {
-        float old = oxygenLevel;
-        oxygenLevel -= amount;
-        GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setOxygenText", oxygenLevel);
+    public static float getOxygen() {
         return oxygenLevel;
     }
 
     public static float setOxygen(float amount) {
         float old = oxygenLevel;
         oxygenLevel = amount;
+
+        if(oxygenLevel > maxOxygen) {
+            oxygenLevel = maxOxygen;
+        } else if(oxygenLevel < 0) {
+            oxygenLevel = 0;
+        }
+
         GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setOxygenText", oxygenLevel);
         return oxygenLevel;
     }
 
-    public static float getOxygen() {
-        return oxygenLevel;
+
+    public static float addOxygen(float amount) {
+        if(amount < 0) {
+            amount *= -1;
+        }
+
+        return setOxygen(oxygenLevel + amount);
+    }
+
+
+    public static float reduceOxygen(float amount) {
+        if(amount < 0) {
+            amount *= -1;
+        }
+
+        return setOxygen(oxygenLevel - amount);
     }
 
     public static LocationArea getLocationArea() {

@@ -19,6 +19,9 @@ public class Menus : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "Menu") {
             isOnMainScreen = true;
             canvas.gameObject.transform.Find("StartMenu").gameObject.SetActive(true);
+            canvas.gameObject.transform.Find("Oxygen").gameObject.SetActive(false);
+        } else {
+            canvas.gameObject.transform.Find("Oxygen").gameObject.SetActive(true);
         }
     }
 
@@ -96,6 +99,13 @@ public class Menus : MonoBehaviour
 
     public void setOxygenText(float lvl) {
         canvas.gameObject.transform.Find("Oxygen").gameObject.GetComponent<UnityEngine.UI.Text>().text = "Oxygen: " + lvl + "%";
+    }
+
+    public void setAnnouncementText(string str) {
+        Text obj = canvas.gameObject.transform.Find("ActionText").gameObject.GetComponent<UnityEngine.UI.Text>();
+
+        obj.enabled = (str != "");
+        obj.text = str;
     }
 
     // Load the Game Scene.

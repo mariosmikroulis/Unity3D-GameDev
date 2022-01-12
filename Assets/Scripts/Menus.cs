@@ -22,7 +22,6 @@ public class Menus : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "Menu") {
             isOnMainScreen = true;
             canvas.gameObject.transform.Find("StartMenu").gameObject.SetActive(true);
-            canvas.gameObject.transform.Find("Oxygen").gameObject.SetActive(false);
         } else {
             Transform statusBar = canvas.gameObject.transform.Find("StatusBar");
 
@@ -115,7 +114,6 @@ public class Menus : MonoBehaviour
     }
 
     public void setOxygenUI(float amount) {
-        Debug.Log(amount);
         if(oxygenSlider != null) {
             oxygenSlider.value = amount;
         }

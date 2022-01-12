@@ -11,6 +11,9 @@ public class Menus : MonoBehaviour
     private bool isOnMainScreen = false; // check if is in main screen.
     private bool isPauseMenuOn = false; // can exit from the game being paused.
     private bool forcePause = false; // forces the player to be paused.
+
+    private Slider healthSlider;
+    private Slider oxygenSlider;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +24,10 @@ public class Menus : MonoBehaviour
             canvas.gameObject.transform.Find("StartMenu").gameObject.SetActive(true);
             canvas.gameObject.transform.Find("Oxygen").gameObject.SetActive(false);
         } else {
-            canvas.gameObject.transform.Find("Oxygen").gameObject.SetActive(true);
+            Transform statusBar = canvas.gameObject.transform.Find("StatusBar");
+
+            healthSlider = statusBar.Find("HealthSlider").GetComponent<Slider>();
+            oxygenSlider = statusBar.Find("OxygenSlider").GetComponent<Slider>();
         }
     }
 
@@ -99,6 +105,20 @@ public class Menus : MonoBehaviour
 
     public void setOxygenText(float lvl) {
         canvas.gameObject.transform.Find("Oxygen").gameObject.GetComponent<UnityEngine.UI.Text>().text = "Oxygen: " + lvl + "%";
+    }
+
+
+    public void setHealthUI(float amount) {
+        if(healthSlider != null) {
+            healthSlider.value = amount;
+        }
+    }
+
+    public void setOxygenUI(float amount) {
+        Debug.Log(amount);
+        if(oxygenSlider != null) {
+            oxygenSlider.value = amount;
+        }
     }
 
     public void setAnnouncementText(string str) {

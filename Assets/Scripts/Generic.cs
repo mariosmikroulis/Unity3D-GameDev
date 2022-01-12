@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class Generic
 {
     public static Vector3 enterance {get; set;}
     public static Inventory inventory {get; set;}
     public static int difficultyLevelSet = 0;
+
+    // Status
     public static float oxygenLevel = 100;
     public static float maxOxygen = 100;
 
     public static float curHealth = 1000;
     public static float maxHealth = 1000;
+
+
     public static int axeTries = 0;
     public static bool hasAxe = false;
     public static bool hasChip = false;
@@ -38,6 +43,55 @@ public static class Generic
         return inventory;
     }
 
+    public static float getMaxHealth() {
+        return maxHealth;
+    }
+
+    public static float setMaxHealth(float amount) {
+        float old = maxHealth;
+        maxHealth = amount;
+
+        GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setHealthUI", curHealth/maxHealth);
+
+        return old;
+    }
+
+    public static float getHealth() {
+        return curHealth;
+    }
+
+    public static float setHealth(float amount) {
+        float old = curHealth;
+
+        if(amount < 0) {
+            amount = 0;
+        } else if(amount > maxHealth) {
+            amount = curHealth;
+        }
+
+        curHealth = amount;
+
+        GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setHealthUI", curHealth/maxHealth);
+
+        return old;
+    }
+
+    public static float addHealth(float amount) {
+        if(amount < 0) {
+            amount *= -1;
+        }
+
+        return setHealth(curHealth + amount);
+    }
+
+    public static float removeHealth(float amount) {
+        if(amount < 0) {
+            amount *= -1;
+        }
+
+        return setHealth(curHealth - amount);
+    }
+
     public static float getOxygen() {
         return oxygenLevel;
     }
@@ -51,8 +105,8 @@ public static class Generic
         } else if(oxygenLevel < 0) {
             oxygenLevel = 0;
         }
-
-        GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setOxygenText", oxygenLevel);
+        
+        GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setOxygenUI", oxygenLevel/100);
         return oxygenLevel;
     }
 

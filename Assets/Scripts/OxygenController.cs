@@ -8,11 +8,6 @@ public class OxygenController : MonoBehaviour
 {
     public float timer = 3.0f;
 
-    void Start()
-    {
-        Generic.setOxygen(100);
-    }
-
     // Controlls oxygen level and ends game when its 0
     void Update(){
         if(Generic.oxygenLevel <= 0){

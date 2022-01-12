@@ -12,8 +12,12 @@ public class Menus : MonoBehaviour
     private bool isPauseMenuOn = false; // can exit from the game being paused.
     private bool forcePause = false; // forces the player to be paused.
 
-    private Slider healthSlider;
-    private Slider oxygenSlider;
+    public Slider healthSlider;
+    public Gradient healthGradient;
+    private Image healthFill;
+    public Slider oxygenSlider;
+    public Gradient oxygenGradient;
+    private Image oxygenFill;
     
     // Start is called before the first frame update
     void Start()
@@ -25,8 +29,11 @@ public class Menus : MonoBehaviour
         } else {
             Transform statusBar = canvas.gameObject.transform.Find("StatusBar");
 
-            healthSlider = statusBar.Find("HealthSlider").GetComponent<Slider>();
-            oxygenSlider = statusBar.Find("OxygenSlider").GetComponent<Slider>();
+            healthFill = statusBar.Find("HealthSlider").Find("fill").GetComponent<Image>();
+            oxygenFill = statusBar.Find("OxygenSlider").Find("fill").GetComponent<Image>();
+
+            setHealthUI(1);
+            setOxygenUI(1);
         }
     }
 
@@ -110,12 +117,14 @@ public class Menus : MonoBehaviour
     public void setHealthUI(float amount) {
         if(healthSlider != null) {
             healthSlider.value = amount;
+            healthFill.color = healthGradient.Evaluate(amount);
         }
     }
 
     public void setOxygenUI(float amount) {
         if(oxygenSlider != null) {
             oxygenSlider.value = amount;
+            oxygenFill.color = oxygenGradient.Evaluate(amount);
         }
     }
 

@@ -21,9 +21,22 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(player.position);
 
             if(distance <= agent.stoppingDistance) {
-                // attack the target.
-                // Face the target.
+                FaceTarget();
+                // attack the target
             }
         }
+    }
+
+    void FaceTarget()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, aimDistance);
     }
 }

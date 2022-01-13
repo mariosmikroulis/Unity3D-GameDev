@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Timers;
 
-public class OxygenController : MonoBehaviour
+public class PlayerManagement : MonoBehaviour
 {
     public float timer = 3.0f;
+    
+    private float secondCounter = 1f;
 
     // Controlls oxygen level and ends game when its 0
     void Update(){

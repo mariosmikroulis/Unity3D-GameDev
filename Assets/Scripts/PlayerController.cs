@@ -77,8 +77,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionStay(){
-        touchingFloor = true;
+    void OnCollisionStay(Collision info){
+        
     }
     
     void OnCollisionExit(){
@@ -138,28 +138,28 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey("w"))
         {
-            GetComponent<Rigidbody>().AddForce(forwardDir * 350f * Time.deltaTime,
+            GetComponent<Rigidbody>().AddForce(forwardDir * 650f * Time.deltaTime,
                  ForceMode.VelocityChange);
         }
         if (Input.GetKey("a"))
         {
-            GetComponent<Rigidbody>().AddForce(rightDir * -250f * Time.deltaTime,
+            GetComponent<Rigidbody>().AddForce(rightDir * -450f * Time.deltaTime,
                  ForceMode.VelocityChange);
         }
         if (Input.GetKey("s"))
         {
-            GetComponent<Rigidbody>().AddForce(forwardDir * -250f * Time.deltaTime,
+            GetComponent<Rigidbody>().AddForce(forwardDir * -450f * Time.deltaTime,
                  ForceMode.VelocityChange);
         }
         if (Input.GetKey("d"))
         {
-            GetComponent<Rigidbody>().AddForce(rightDir * 250f * Time.deltaTime,
+            GetComponent<Rigidbody>().AddForce(rightDir * 450f * Time.deltaTime,
                  ForceMode.VelocityChange);
         }
         if (Input.GetKey("space"))
         {
             if(!touchingFloor) return;
-            GetComponent<Rigidbody>().AddForce(upDir * 1500f * Time.deltaTime,
+            GetComponent<Rigidbody>().AddForce(upDir * 5000f * Time.deltaTime,
                  ForceMode.Impulse);
         }
         if (Input.GetKey("f"))

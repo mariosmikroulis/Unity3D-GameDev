@@ -10,7 +10,7 @@ public class MysteryBoxScript : MonoBehaviour
 
 	public Text announcementsText; //Text in the center of the sceen
 
-    public float timer = 0.0f; //Timer used for removing the announcement.
+    public static float timer = 0.0f; //Timer used for removing the announcement.
 
     //Player has entered the collider
     private void OnTriggerEnter(Collider other){
@@ -36,7 +36,7 @@ public class MysteryBoxScript : MonoBehaviour
         if(Input.GetKey("f") && active && inArea){
             active = false;
             GiveRandomItem();
-            timer = 3.0f;
+            timer = 15.0f;
         }
         if(timer<0){
             if(announcementsText.text == "Press F to open the box") return;
@@ -75,7 +75,7 @@ public class MysteryBoxScript : MonoBehaviour
         }
     }
 
-    // Gives the axe to the player after 3 faileed tries (important item)
+    // Gives the axe to the player after 3 failed tries (important item)
     bool GiveAxe(){
         if(Generic.axeTries == 3){
             Generic.getInventory().addItem("axe", 1);

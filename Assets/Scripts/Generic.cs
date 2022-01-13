@@ -16,6 +16,7 @@ public static class Generic
     public static float curHealth = 1000;
     public static float maxHealth = 1000;
 
+    public static float stamina = 100;
 
     public static int axeTries = 0;
     public static bool hasAxe = false;
@@ -126,6 +127,49 @@ public static class Generic
         }
 
         return setOxygen(oxygenLevel - amount);
+    }
+
+    public static float getStamina()
+    {
+        return stamina;
+    }
+
+    public static float setStamina(float amount)
+    {
+        float old = stamina;
+        stamina = amount;
+
+        if (stamina > 100)
+        {
+            stamina = 100;
+        }
+        else if (stamina < 0)
+        {
+            stamina = 0;
+        }
+
+        GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setStaminaUI", stamina / 100);
+        return stamina;
+    }
+
+    public static float addStamina(float amount)
+    {
+        if (amount < 0)
+        {
+            amount *= -1;
+        }
+
+        return setStamina(stamina + amount);
+    }
+
+    public static float removeStamina(float amount)
+    {
+        if (amount < 0)
+        {
+            amount *= -1;
+        }
+
+        return setStamina(stamina - amount);
     }
 
     public static LocationArea getLocationArea() {

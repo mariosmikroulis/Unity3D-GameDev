@@ -15,10 +15,15 @@ public class Menus : MonoBehaviour
     public Slider healthSlider;
     public Gradient healthGradient;
     private Image healthFill;
+
     public Slider oxygenSlider;
     public Gradient oxygenGradient;
     private Image oxygenFill;
-    
+
+    public Slider staminaSlider;
+    public Gradient staminaGradient;
+    private Image staminaFill;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +36,11 @@ public class Menus : MonoBehaviour
 
             healthFill = statusBar.Find("HealthSlider").Find("fill").GetComponent<Image>();
             oxygenFill = statusBar.Find("OxygenSlider").Find("fill").GetComponent<Image>();
+            staminaFill = statusBar.Find("StaminaSlider").Find("fill").GetComponent<Image>();
 
             setHealthUI(1);
             setOxygenUI(1);
+            setStaminaUI(1);
         }
     }
 
@@ -125,6 +132,13 @@ public class Menus : MonoBehaviour
         if(oxygenSlider != null) {
             oxygenSlider.value = amount;
             oxygenFill.color = oxygenGradient.Evaluate(amount);
+        }
+    }
+
+    public void setStaminaUI(float amount) {
+        if(staminaSlider != null) {
+            staminaSlider.value = amount;
+            staminaFill.color = staminaGradient.Evaluate(amount);
         }
     }
 

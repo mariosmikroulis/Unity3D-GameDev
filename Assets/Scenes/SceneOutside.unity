@@ -1124,15 +1124,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MuteMasterSound: 0
   MasterSoundVolume: 1
+  MuteMusicSound: 0
+  MusicSoundVolume: 1
+  MuteSFXSound: 0
+  SFXSoundVolume: 1
   sounds:
   - name: StrongWind
-    clip: {fileID: 8300000, guid: 371ab54f68c70914e934ba8f45a6fc7c, type: 3}
+    clip: {fileID: 0}
+    custom: {fileID: 1936842358}
+    type: 0
     volume: 1
     pitch: 1
     play: 1
     mute: 0
     loop: 1
     source: {fileID: 0}
+  soundsGameObjects: []
 --- !u!1 &252301940
 GameObject:
   m_ObjectHideFlags: 0

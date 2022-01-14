@@ -18,8 +18,6 @@ public class SoundManager : MonoBehaviour {
 
     public Sound[] sounds;
 
-    public Sound[] soundsGameObjects;
-
     public static SoundManager instance;
 
     public static SoundManager getInstance() {

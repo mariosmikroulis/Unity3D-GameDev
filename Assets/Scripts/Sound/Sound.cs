@@ -152,4 +152,8 @@ public class Sound
         source.Stop();
         play = false;
     }
+
+    public bool isPlaying() {
+        return source.isPlaying;
+    }
 }

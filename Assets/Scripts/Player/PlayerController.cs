@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     bool doorArea = false;
     bool doorAreaOutside = false;
 
-    bool touchingFloor = true;
+    public bool touchingFloor = true;
+    public bool running = false;
 
     public PlayerManagement playerManagement;
 

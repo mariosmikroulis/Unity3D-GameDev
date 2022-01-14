@@ -31,12 +31,15 @@ public class Menus : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "Menu") {
             isOnMainScreen = true;
             canvas.gameObject.transform.Find("StartMenu").gameObject.SetActive(true);
+            SoundManager.getInstance().stop("StrongWind");
         } else {
+            SoundManager.getInstance().mute("StrongWind", true);
+            SoundManager.getInstance().play("StrongWind");
             Transform statusBar = canvas.gameObject.transform.Find("StatusBar");
 
-            healthFill = statusBar.Find("HealthSlider").Find("fill").GetComponent<Image>();
-            oxygenFill = statusBar.Find("OxygenSlider").Find("fill").GetComponent<Image>();
-            staminaFill = statusBar.Find("StaminaSlider").Find("fill").GetComponent<Image>();
+            healthFill = healthSlider.fillRect.GetComponent<Image>();
+            oxygenFill = oxygenSlider.fillRect.GetComponent<Image>();
+            staminaFill = staminaSlider.fillRect.GetComponent<Image>();
 
             setHealthUI(1);
             setOxygenUI(1);
@@ -116,13 +119,8 @@ public class Menus : MonoBehaviour
         canvas.gameObject.transform.Find("Intro04").gameObject.SetActive(true);
     }
 
-    public void setOxygenText(float lvl) {
-        canvas.gameObject.transform.Find("Oxygen").gameObject.GetComponent<UnityEngine.UI.Text>().text = "Oxygen: " + lvl + "%";
-    }
-
-
     public void setHealthUI(float amount) {
-        if(healthSlider != null) {
+        if (healthSlider != null) {
             healthSlider.value = amount;
             healthFill.color = healthGradient.Evaluate(amount);
         }
@@ -143,7 +141,7 @@ public class Menus : MonoBehaviour
     }
 
     public void setAnnouncementText(string str) {
-        Text obj = canvas.gameObject.transform.Find("ActionText").gameObject.GetComponent<UnityEngine.UI.Text>();
+        Text obj = canvas.gameObject.transform.Find("ActionText").gameObject.GetComponent<Text>();
 
         obj.enabled = (str != "");
         obj.text = str;

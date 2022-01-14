@@ -180,6 +180,9 @@ public static class Generic
     public static LocationArea setLocationArea(LocationArea area) {
         LocationArea old = locationArea;
         locationArea = area;
+
+        SoundManager.getInstance().mute("StrongWind", (area != LocationArea.World));
+
         return old;
     }
 }

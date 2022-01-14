@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -24,18 +22,43 @@ public class Menus : MonoBehaviour
     public Gradient staminaGradient;
     private Image staminaFill;
 
+    public static Menus instance;
+
+    void Awake() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            if (instance == null) {
+                instance = this;
+            } else {
+                Destroy(gameObject);
+                return;
+            }
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public static Menus getInstance() {
+        return instance;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        Transform statusBar = canvas.gameObject.transform.Find("StatusBar");
+
         // It is the main screen. They can come back to it via the pause menu.
-        if(SceneManager.GetActiveScene().name == "Menu") {
+        if (SceneManager.GetActiveScene().name == "Menu") {
             isOnMainScreen = true;
             canvas.gameObject.transform.Find("StartMenu").gameObject.SetActive(true);
             SoundManager.getInstance().stop("StrongWind");
+            statusBar.gameObject.SetActive(false);
         } else {
             SoundManager.getInstance().mute("StrongWind", true);
             SoundManager.getInstance().play("StrongWind");
-            Transform statusBar = canvas.gameObject.transform.Find("StatusBar");
+
+            statusBar.gameObject.SetActive(true);
 
             healthFill = healthSlider.fillRect.GetComponent<Image>();
             oxygenFill = oxygenSlider.fillRect.GetComponent<Image>();
@@ -57,20 +80,21 @@ public class Menus : MonoBehaviour
             if(isPauseMenuOn) {
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.Confined;
-                canvas.gameObject.transform.Find("PauseMenu").gameObject.SetActive(true);
+                canvas.Find("PauseMenu").gameObject.SetActive(true);
             }
 
             // Player wants to continue playing the game.
             else {
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
-                canvas.gameObject.transform.Find("PauseMenu").gameObject.SetActive(false);
+                canvas.Find("PauseMenu").gameObject.SetActive(false);
             }
         }
     }
 
     // The player wishes to go to the main screen and lose their progress.
     public void loadMainScreen() {
+        Debug.Log("load");
         SceneManager.LoadScene("Menu");
     }
 
@@ -81,7 +105,7 @@ public class Menus : MonoBehaviour
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
 
-        canvas.gameObject.transform.Find("WonMenu").gameObject.SetActive(true);
+        canvas.Find("WonMenu").gameObject.SetActive(true);
     }
 
     // actions to do when player loses
@@ -91,32 +115,32 @@ public class Menus : MonoBehaviour
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
 
-        canvas.gameObject.transform.Find("LostMenu").gameObject.SetActive(true);
+        canvas.Find("LostMenu").gameObject.SetActive(true);
     }
 
     // Load the new game story for the player to read.
     public void NewGame() {
-        canvas.gameObject.transform.Find("StartMenu").gameObject.SetActive(false);
-        canvas.gameObject.transform.Find("Intro01").gameObject.SetActive(true);
+        canvas.Find("StartMenu").gameObject.SetActive(false);
+        canvas.Find("Intro01").gameObject.SetActive(true);
 
     }
 
     // go to the second text
     public void ShowStory2() {
-        canvas.gameObject.transform.Find("Intro01").gameObject.SetActive(false);
-        canvas.gameObject.transform.Find("Intro02").gameObject.SetActive(true);
+        canvas.Find("Intro01").gameObject.SetActive(false);
+        canvas.Find("Intro02").gameObject.SetActive(true);
     }
 
     // go to the third text
     public void ShowStory3() {
-        canvas.gameObject.transform.Find("Intro02").gameObject.SetActive(false);
-        canvas.gameObject.transform.Find("Intro03").gameObject.SetActive(true);
+        canvas.Find("Intro02").gameObject.SetActive(false);
+        canvas.Find("Intro03").gameObject.SetActive(true);
     }
 
     // go to the fourth text
     public void ShowStory4() {
-        canvas.gameObject.transform.Find("Intro03").gameObject.SetActive(false);
-        canvas.gameObject.transform.Find("Intro04").gameObject.SetActive(true);
+        canvas.Find("Intro03").gameObject.SetActive(false);
+        canvas.Find("Intro04").gameObject.SetActive(true);
     }
 
     public void setHealthUI(float amount) {
@@ -141,10 +165,14 @@ public class Menus : MonoBehaviour
     }
 
     public void setAnnouncementText(string str) {
-        Text obj = canvas.gameObject.transform.Find("ActionText").gameObject.GetComponent<Text>();
+        Text obj = canvas.Find("ActionText").GetComponent<Text>();
 
         obj.enabled = (str != "");
         obj.text = str;
+    }
+
+    public string getAnnouncementText() {
+        return canvas.Find("ActionText").GetComponent<Text>().text;
     }
 
     // Load the Game Scene.

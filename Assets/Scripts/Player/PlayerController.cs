@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,40 +32,40 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
             oxygenArea = true;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "Press [F] to get Oxygen");
+            Menus.getInstance().setAnnouncementText("Press [F] to get Oxygen");
         }
         if(other.gameObject.tag == "Issue1"){
             if(Generic.fuelCompleted) return;
             issue1Area = true;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "Press [F] to add Fuel (20)");
+            Menus.getInstance().setAnnouncementText("Press [F] to add Fuel (20)");
         }
         if(other.gameObject.tag == "Issue2"){
             if(Generic.chipCompleted) return;
             issue2Area = true;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "Press [F] to replace the Chip");
+            Menus.getInstance().setAnnouncementText("Press [F] to replace the Chip");
         }
         if(other.gameObject.tag == "Issue3"){
             if(Generic.pumpCompleted) return;
             issue3Area = true;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "Press [F] to replace the Pump");
+            Menus.getInstance().setAnnouncementText("Press [F] to replace the Pump");
         }
         if(other.gameObject.tag == "IssueGold"){
             if(Generic.goldCompleted) return;
             issueGold = true;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "Press [F] to add Gold (10)");
+            Menus.getInstance().setAnnouncementText("Press [F] to add Gold (10)");
         }
         if(other.gameObject.tag == "IssueSilver"){
             if(Generic.silverCompleted) return;
             issueSilver = true;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "Press [F] to add Silver (15)");
+            Menus.getInstance().setAnnouncementText("Press [F] to add Silver (15)");
         }
         if(other.gameObject.tag == "Door"){
             doorArea = true;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "Press [F] to go outside");
+            Menus.getInstance().setAnnouncementText("Press [F] to go outside");
         }
         if(other.gameObject.tag == "DoorOutside"){
             doorAreaOutside = true;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "Press [F] to go in the ship");
+            Menus.getInstance().setAnnouncementText("Press [F] to go in the ship");
         }
 
     }
@@ -86,38 +82,38 @@ public class PlayerController : MonoBehaviour
     void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
             oxygenArea = false;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
         if(other.gameObject.tag == "Issue1"){
             issue1Area = false;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
         if(other.gameObject.tag == "Issue2"){
             issue2Area = false;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
         if(other.gameObject.tag == "Issue3"){
             issue3Area = false;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
         if(other.gameObject.tag == "IssueGold"){
             issueGold = false;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
         if(other.gameObject.tag == "IssueSilver"){
             issue3Area = false;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
         if(other.gameObject.tag == "Door"){
             doorArea = false;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
         if(other.gameObject.tag == "DoorOutside"){
             doorAreaOutside = false;
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
         if(other.gameObject.tag == "Disabled"){
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "");
+            Menus.getInstance().setAnnouncementText("");
         }
     }
 
@@ -176,52 +172,52 @@ public class PlayerController : MonoBehaviour
             }
             if(issue1Area){
                 if(Generic.fuel>=20){
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You added Fuel to the ship.");
+                    Menus.getInstance().setAnnouncementText("You added Fuel to the ship.");
                     GameObject.FindWithTag("Issue1").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.fuelCompleted = true;
                     Generic.tasksCompleted +=1;
                 }else{
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You don't have enough Fuel (20)");
+                    Menus.getInstance().setAnnouncementText("You don't have enough Fuel (20)");
                 }
             }
             if(issue2Area){
                 if(Generic.hasChip){
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You replaced the broken Chip");
+                    Menus.getInstance().setAnnouncementText("You replaced the broken Chip");
                     GameObject.FindWithTag("Issue2").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.chipCompleted = true;
                     Generic.tasksCompleted +=1;
                 }else{
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You need a Chip to place here");
+                    Menus.getInstance().setAnnouncementText("You need a Chip to place here");
                 }
             }
             if(issueGold){
                 if(Generic.gold >= 10){
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You added the required gold");
+                    Menus.getInstance().setAnnouncementText("You added the required gold");
                     GameObject.FindWithTag("IssueGold").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.goldCompleted = true;
                     Generic.tasksCompleted +=1;
                 }else{
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You don't have enough Gold (10)");
+                    Menus.getInstance().setAnnouncementText("You don't have enough Gold (10)");
                 }
             }
             if(issueSilver){
                 if(Generic.silver >= 15){
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You added the required silver");
+                    Menus.getInstance().setAnnouncementText("You added the required silver");
                     GameObject.FindWithTag("IssueSilver").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.silverCompleted = true;
                     Generic.tasksCompleted +=1;
                 }else{
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You don't have enough Silver (15)");
+                    Menus.getInstance().setAnnouncementText("You don't have enough Silver (15)");
                 }
             }
             if(issue3Area){
                 if(Generic.hasPump){
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You replaced the broken Pump");
+                    Menus.getInstance().setAnnouncementText("You replaced the broken Pump");
                     GameObject.FindWithTag("Issue3").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.pumpCompleted = true;
                     Generic.tasksCompleted +=1;
                 }else{
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("setAnnouncementText", "You need a Pump to place here");
+                    Menus.getInstance().setAnnouncementText("You need a Pump to place here");
                 }
             }
             if(Generic.pumpCompleted && Generic.chipCompleted && Generic.fuelCompleted && Generic.goldCompleted && Generic.silverCompleted){

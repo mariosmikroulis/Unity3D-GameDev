@@ -8,8 +8,6 @@ public class MysteryBoxScript : MonoBehaviour
     bool active = true; //Checks if the Mystery Box is active
     bool inArea = false; //Checks if the Player is in the MysteryBoxs collider.
 
-	public Text announcementsText; //Text in the center of the sceen
-
     public static float timer = 0.0f; //Timer used for removing the announcement.
 
     //Player has entered the collider
@@ -17,15 +15,13 @@ public class MysteryBoxScript : MonoBehaviour
         if(!other.CompareTag("Player")) return;
         if(!active) return;
         inArea = true;
-        announcementsText.text = "Press F to open the box";
+        Menus.getInstance().setAnnouncementText("Press [F] to open the box.");
     }
     //Player has left the collider
     void OnTriggerExit(Collider other){
         if(!other.CompareTag("Player")) return;
         inArea = false;
-        if(announcementsText.text == "Press F to open the box"){
-            announcementsText.text = "";
-        }
+        Menus.getInstance().setAnnouncementText("");
     }
 
 
@@ -39,8 +35,8 @@ public class MysteryBoxScript : MonoBehaviour
             timer = 15.0f;
         }
         if(timer<0){
-            if(announcementsText.text == "Press F to open the box") return;
-            announcementsText.text = "";
+            if(Menus.getInstance().getAnnouncementText() == "Press [F] to open the box.") return;
+            Menus.getInstance().setAnnouncementText("");
             timer = 0.0f;
         }
     }
@@ -57,19 +53,19 @@ public class MysteryBoxScript : MonoBehaviour
         int rand = random.Next(1, 4);
         if(rand == 1){
             Generic.getInventory().addItem("fuel", 1);
-            announcementsText.text = "You found 10 fuel tanks!";
+            Menus.getInstance().setAnnouncementText("You found 10 fuel tanks.");
             Generic.fuel += 10;
             return;
         }
         if(rand == 2){
             Generic.getInventory().addItem("pump", 1);
-            announcementsText.text = "You found a fuel pump!";
+            Menus.getInstance().setAnnouncementText("You found a fuel pump.");
             Generic.hasPump = true;
             return;
         }
         if(rand == 3){
             Generic.getInventory().addItem("chip", 1);
-            announcementsText.text = "You found a chip!";
+            Menus.getInstance().setAnnouncementText("You found a chip.");
             Generic.hasChip = true;
             return;
         }
@@ -79,7 +75,7 @@ public class MysteryBoxScript : MonoBehaviour
     bool GiveAxe(){
         if(Generic.axeTries == 3){
             Generic.getInventory().addItem("axe", 1);
-            announcementsText.text = "You found an axe!";
+            Menus.getInstance().setAnnouncementText("You found an axe.");
             Generic.hasAxe = true;
             return true;
         }
@@ -87,7 +83,7 @@ public class MysteryBoxScript : MonoBehaviour
         int rand = random.Next(1, 4);
         if(rand == 1){
             Generic.getInventory().addItem("axe", 1);
-            announcementsText.text = "You found an axe!";
+            Menus.getInstance().setAnnouncementText("You found an axe.");
             Generic.hasAxe = true;
             return true;
         }

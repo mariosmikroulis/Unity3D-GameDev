@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     public float attackDamage = 9f;
     public float attackSpeed = 1f;
 
-    private float attackCd = 0f;
+    public float attackCd = 0f;
 
     public Transform player;
     NavMeshAgent agent;
@@ -25,11 +25,14 @@ public class EnemyAI : MonoBehaviour
         if(distance <= aimDistance) {
             agent.SetDestination(player.position);
 
-            if(distance <= agent.stoppingDistance) {
+            if(distance <= agent.stoppingDistance + 1) {
                 FaceTarget();
 
                 attackCd -= Time.deltaTime;
                 // attack the target
+                if (attackCd <= 0f) {
+                    attackPlayer();
+                }
             }
         }
     }
@@ -42,7 +45,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     void attackPlayer() {
-        Generic.setHealth(attackDamage);
+        Generic.removeHealth(attackDamage);
         attackCd = 1 / attackSpeed;
     }
 

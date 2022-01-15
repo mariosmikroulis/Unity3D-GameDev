@@ -68,10 +68,7 @@ public static class Generic
     public static float setHealth(float amount) {
         float old = curHealth;
 
-        if(amount < 0) {
-            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerLostGame");
-            return old;
-        } else if(amount > maxHealth) {
+        if(amount > maxHealth) {
             amount = curHealth;
         }
 

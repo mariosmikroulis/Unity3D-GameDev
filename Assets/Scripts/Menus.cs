@@ -31,6 +31,7 @@ public class Menus : MonoBehaviour
     public static Menus instance;
 
     void Awake() {
+        /*
         if (instance == null) {
             instance = this;
         } else {
@@ -43,6 +44,9 @@ public class Menus : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        */
+
+        instance = this;
     }
 
     public static Menus getInstance() {

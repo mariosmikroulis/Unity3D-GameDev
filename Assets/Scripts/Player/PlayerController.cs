@@ -203,18 +203,15 @@ public class PlayerController : MonoBehaviour
                 if(Generic.getInventory().hasItem("fuel", 2)){
                     Menus.getInstance().setAnnouncementText("You added Fuel to the ship");
                     Destroy(GameObject.FindWithTag("Ship2Fuel"));
-                    Generic.chip2Completed = true;
+                    Generic.fuel2Completed = true;
                     Generic.getInventory().removeItem("fuel", 2);
                     Generic.tasks2Completed +=1;
                 }else{
                     Menus.getInstance().setAnnouncementText("You don't have enough Fuel (20)");
                 }
-            }else if(ship2Start){
-                if(Generic.tasks2Completed == 2){
-                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerWonGame");
-                }else{
-                    Menus.getInstance().setAnnouncementText("There are still tasks left to complete!");
-                }
+            }
+            if(Generic.tasks2Completed == 2){
+                GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerWonGame2");
             }
             if(Generic.tasksCompleted == 3){
                 GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerWonGame");

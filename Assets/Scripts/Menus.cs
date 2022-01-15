@@ -67,6 +67,7 @@ public class Menus : MonoBehaviour
             SoundManager.getInstance().stop("StrongWind");
             statusBar.gameObject.SetActive(false);
         } else {
+            Time.timeScale = 1;
             SoundManager.getInstance().mute("StrongWind", true);
             SoundManager.getInstance().play("StrongWind");
 

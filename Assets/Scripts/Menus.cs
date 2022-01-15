@@ -22,6 +22,12 @@ public class Menus : MonoBehaviour
     public Gradient staminaGradient;
     private Image staminaFill;
 
+    private Slider masterSlider;
+    private Slider musicSlider;
+    private Slider sfxSlider;
+
+    private Slider mouseSensitivitySlider;
+
     public static Menus instance;
 
     void Awake() {
@@ -47,6 +53,13 @@ public class Menus : MonoBehaviour
     void Start()
     {
         Transform statusBar = canvas.gameObject.transform.Find("StatusBar");
+
+        masterSlider = canvas.Find("MasterVolumeSlider").GetComponent<Slider>();
+        musicSlider = canvas.Find("MusicVolumeSlider").GetComponent<Slider>();
+        sfxSlider = canvas.Find("SFXVolumeSlider").GetComponent<Slider>();
+
+        mouseSensitivitySlider = canvas.Find("MouseSlider").GetComponent<Slider>();
+
 
         // It is the main screen. They can come back to it via the pause menu.
         if (SceneManager.GetActiveScene().name == "Menu") {
@@ -119,6 +132,11 @@ public class Menus : MonoBehaviour
     }
 
     public void openSettings() {
+        masterSlider.value = SoundManager.getInstance().getMasterSoundVolume();
+        musicSlider.value = SoundManager.getInstance().getMusicSoundVolume();
+        sfxSlider.value = SoundManager.getInstance().getSFXSoundVolume();
+        mouseSensitivitySlider.value = SoundManager.getInstance().getMasterSoundVolume();
+
         canvas.Find("StartMenu").gameObject.SetActive(false);
         canvas.Find("PauseMenu").gameObject.SetActive(false);
         canvas.Find("Settings").gameObject.SetActive(true);

@@ -26,5 +26,19 @@ public class CameraHandler : MonoBehaviour
         transform.localRotation = Quaternion.Euler(x_rotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * x_mouse);
     }
+
+    public float getMouseSensitivity() {
+        return mouseSensitivity;
+    }
+
+    public void setMouseSensitivity(float amount) {
+        if(amount < 1) {
+            amount = 1;
+        } else if(amount > 1000) {
+            amount = 1000;
+        }
+
+        mouseSensitivity = 300f;
+    }
 }
  

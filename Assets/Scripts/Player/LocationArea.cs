@@ -1,5 +1,6 @@
 
 public enum LocationArea {
     MainShip,
-    World
+    SecondShip,
+    World,
 }

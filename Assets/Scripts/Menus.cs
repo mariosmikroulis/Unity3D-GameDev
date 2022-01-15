@@ -67,7 +67,6 @@ public class Menus : MonoBehaviour
             SoundManager.getInstance().stop("StrongWind");
             statusBar.gameObject.SetActive(false);
         } else {
-            Time.timeScale = 1;
             SoundManager.getInstance().mute("StrongWind", true);
             SoundManager.getInstance().play("StrongWind");
 
@@ -168,24 +167,28 @@ public class Menus : MonoBehaviour
         }
     }
 
+    // When master volume has changed
     public void masterVolumeChanged() {
         if (SoundManager.getInstance()) {
             SoundManager.getInstance().setMasterSoundVolume(masterSlider.value);
         }
     }
 
+    // When music volume has changed
     public void musicVolumeChanged() {
         if (SoundManager.getInstance()) {
             SoundManager.getInstance().setMasterSoundVolume(musicSlider.value);
         }
     }
 
+    // When SFX volume has changed
     public void sfxVolumeChanged() {
         if (SoundManager.getInstance()) {
             SoundManager.getInstance().setMasterSoundVolume(sfxSlider.value);
         }
     }
 
+    // When mouse sensitivity has changed
     public void mouseSensitivityChanged() {
         if (SoundManager.getInstance()) {
             CameraHandler.getInstance().setMouseSensitivity(mouseSensitivitySlider.value);
@@ -217,6 +220,7 @@ public class Menus : MonoBehaviour
         canvas.Find("Intro04").gameObject.SetActive(true);
     }
 
+    // Sets the health UI value
     public void setHealthUI(float amount) {
         if (healthSlider != null) {
             healthSlider.value = amount;
@@ -224,6 +228,7 @@ public class Menus : MonoBehaviour
         }
     }
 
+    // Sets the oxygen UI value
     public void setOxygenUI(float amount) {
         if(oxygenSlider != null) {
             oxygenSlider.value = amount;
@@ -231,6 +236,7 @@ public class Menus : MonoBehaviour
         }
     }
 
+    // Sets the stamina UI value
     public void setStaminaUI(float amount) {
         if(staminaSlider != null) {
             staminaSlider.value = amount;
@@ -238,6 +244,7 @@ public class Menus : MonoBehaviour
         }
     }
 
+    // Sets the text in announcements bar
     public void setAnnouncementText(string str) {
         Text obj = canvas.Find("ActionText").GetComponent<Text>();
 
@@ -246,11 +253,12 @@ public class Menus : MonoBehaviour
         obj.text = str;
     }
 
+    // Gets the text from announcements bar
     public string getAnnouncementText() {
         return canvas.Find("ActionText").GetComponent<Text>().text;
     }
 
-    // Load the Game Scene.
+    // Loads main scene
     public void GoToMainScene() {
         SceneManager.LoadScene("SceneOutside");
     }

@@ -34,6 +34,7 @@ public static class Generic
     // public static bool hasShovel = false;
 
 
+    // Gets inventory of player
     public static Inventory getInventory() {
         if(inventory == null) {
             inventory = new Inventory();
@@ -42,10 +43,12 @@ public static class Generic
         return inventory;
     }
 
+    // Gets player max health
     public static float getMaxHealth() {
         return maxHealth;
     }
 
+    // Sets player max health
     public static float setMaxHealth(float amount) {
         float old = maxHealth;
         maxHealth = amount;
@@ -55,10 +58,12 @@ public static class Generic
         return old;
     }
 
+    // Gets player health
     public static float getHealth() {
         return curHealth;
     }
 
+    // Sets player health
     public static float setHealth(float amount) {
         float old = curHealth;
 
@@ -76,6 +81,7 @@ public static class Generic
         return old;
     }
 
+    // Add health to player
     public static float addHealth(float amount) {
         if(amount < 0) {
             amount *= -1;
@@ -84,6 +90,7 @@ public static class Generic
         return setHealth(curHealth + amount);
     }
 
+    // Remove health from player
     public static float removeHealth(float amount) {
         if(amount < 0) {
             amount *= -1;
@@ -92,10 +99,12 @@ public static class Generic
         return setHealth(curHealth - amount);
     }
 
+    // Get player oxygen
     public static float getOxygen() {
         return oxygenLevel;
     }
 
+    // Set player oxygen
     public static float setOxygen(float amount) {
         float old = oxygenLevel;
         oxygenLevel = amount;
@@ -110,7 +119,7 @@ public static class Generic
         return oxygenLevel;
     }
 
-
+    // Add player oxygen
     public static float addOxygen(float amount) {
         if(amount < 0) {
             amount *= -1;
@@ -120,6 +129,7 @@ public static class Generic
     }
 
 
+    // Remove player oxygen
     public static float reduceOxygen(float amount) {
         if(amount < 0) {
             amount *= -1;
@@ -128,11 +138,13 @@ public static class Generic
         return setOxygen(oxygenLevel - amount);
     }
 
+    // Get player stamina
     public static float getStamina()
     {
         return stamina;
     }
 
+    // Set player stamina
     public static float setStamina(float amount)
     {
         float old = stamina;
@@ -151,6 +163,7 @@ public static class Generic
         return stamina;
     }
 
+    // Add player stamina
     public static float addStamina(float amount)
     {
         if (amount < 0)
@@ -161,6 +174,7 @@ public static class Generic
         return setStamina(stamina + amount);
     }
 
+    // Remove player stamina
     public static float removeStamina(float amount)
     {
         if (amount < 0)
@@ -171,10 +185,12 @@ public static class Generic
         return setStamina(stamina - amount);
     }
 
+    // Get the location area to know where the player is (inside ship or outside) (enum)
     public static LocationArea getLocationArea() {
         return locationArea;
     }
 
+    // Sets locaation area
     public static LocationArea setLocationArea(LocationArea area) {
         LocationArea old = locationArea;
         locationArea = area;

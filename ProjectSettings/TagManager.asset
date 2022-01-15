@@ -17,6 +17,9 @@ TagManager:
   - UI
   - Ship2Exit
   - Ship2Entrance
+  - Ship2Chip
+  - Ship2Start
+  - Ship2Fuel
   layers:
   - Default
   - TransparentFX

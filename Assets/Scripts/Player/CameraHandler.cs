@@ -51,7 +51,7 @@ public class CameraHandler : MonoBehaviour
             amount = 1000;
         }
 
-        mouseSensitivity = 300f;
+        mouseSensitivity = amount;
     }
 }
  

@@ -3,10 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Vector2 moveValue;
-    public float speed;
-    Vector2 mouseMovement;
-
     bool oxygenArea = false;
     bool issue1Area = false;
     bool issue2Area = false;

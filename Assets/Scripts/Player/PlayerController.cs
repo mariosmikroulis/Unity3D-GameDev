@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     bool ship2Entrance = false;
     bool ship2Exit = false;
 
+    bool ship2Chip = false;
+    bool ship2Fuel = false;
+    bool ship2Start = false;
+
     public Material green;
 
     // All areas which thee playe can inteact with
@@ -37,16 +41,6 @@ public class PlayerController : MonoBehaviour
             issue3Area = true;
             Menus.getInstance().setAnnouncementText("Press [F] to replace the Pump");
         }
-        if(other.gameObject.tag == "IssueGold"){
-            if(Generic.goldCompleted) return;
-            issueGold = true;
-            Menus.getInstance().setAnnouncementText("Press [F] to add Gold (10)");
-        }
-        if(other.gameObject.tag == "IssueSilver"){
-            if(Generic.silverCompleted) return;
-            issueSilver = true;
-            Menus.getInstance().setAnnouncementText("Press [F] to add Silver (15)");
-        }
         if(other.gameObject.tag == "Door"){
             doorArea = true;
             Menus.getInstance().setAnnouncementText("Press [F] to go outside");
@@ -62,6 +56,20 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Ship2Exit"){
             ship2Exit = true;
             Menus.getInstance().setAnnouncementText("Press [F] to go in the ship");
+        }
+        if(other.gameObject.tag == "Ship2Chip"){
+            if(Generic.chip2Completed) return;
+            ship2Chip = true;
+            Menus.getInstance().setAnnouncementText("Press [F] to replace the Chip");
+        }
+        if(other.gameObject.tag == "Ship2Fuel"){
+            if(Generic.fuel2Completed) return;
+            ship2Fuel = true;
+            Menus.getInstance().setAnnouncementText("Press [F] to add Fuel (20)");
+        }
+        if(other.gameObject.tag == "Ship2Start"){
+            ship2Start = true;
+            Menus.getInstance().setAnnouncementText("Press [F] to start the ship");
         }
 
     }
@@ -111,6 +119,19 @@ public class PlayerController : MonoBehaviour
             ship2Exit = false;
             Menus.getInstance().setAnnouncementText("");
         }
+        if(other.gameObject.tag == "Ship2Chip"){
+            ship2Chip = false;
+            Menus.getInstance().setAnnouncementText("");
+        }
+        if(other.gameObject.tag == "Ship2Fuel"){
+            ship2Fuel = false;
+            Menus.getInstance().setAnnouncementText("");
+        }
+        if(other.gameObject.tag == "Ship2Start"){
+            ship2Start = false;
+            Menus.getInstance().setAnnouncementText("");
+        }
+
     }
 
     // Player Movement and Interactions
@@ -121,79 +142,81 @@ public class PlayerController : MonoBehaviour
                 transform.position = new Vector3(183f, 2.4f, -1f);
                 ship2Entrance = false;
                 Generic.setLocationArea(LocationArea.World);
-            }
-            if(ship2Exit){
+            }else if(ship2Exit){
                 transform.position = new Vector3(10f, 14.5f,-325.45f);
                 ship2Exit= false;
                 Generic.setLocationArea(LocationArea.World);
-            }
-            if(doorArea){
+            }else if(doorArea){
                 transform.position = new Vector3(-9f, 14,39);
                 doorArea = false;
                 Generic.setLocationArea(LocationArea.World);
-            }
-            if(doorAreaOutside){
+            }else if(doorAreaOutside){
                 transform.position = new Vector3(193.9f, 2.4f, 0.14f);
                 doorAreaOutside = false;
                 Generic.setLocationArea(LocationArea.MainShip);
-            }
-            if(oxygenArea){
+            }else if(oxygenArea){
                 Generic.setOxygen(100);
-            }
-            if(issue1Area){
-                if(Generic.fuel>=20){
+            }else if(issue1Area){
+                if(Generic.fuelCompleted == true) return;
+                if(Generic.getInventory().hasItem("fuel", 2)){
                     Menus.getInstance().setAnnouncementText("You added Fuel to the ship.");
-                    GameObject.FindWithTag("Issue1").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.fuelCompleted = true;
-                    Generic.fuel-=20;
+                    Generic.getInventory().removeItem("fuel", 2);
                     Generic.tasksCompleted +=1;
+
                 }else{
                     Menus.getInstance().setAnnouncementText("You don't have enough Fuel (20)");
                 }
-            }
-            if(issue2Area){
-                if(Generic.hasChip){
+            }else if(issue2Area){
+                if(Generic.chipCompleted == true) return;
+                if(Generic.getInventory().hasItem("chip", 1)){
                     Menus.getInstance().setAnnouncementText("You replaced the broken Chip");
-                    GameObject.FindWithTag("Issue2").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.chipCompleted = true;
-                    Generic.hasChip = false;
+                    Generic.getInventory().removeItem("chip", 1);
                     Generic.tasksCompleted +=1;
                 }else{
                     Menus.getInstance().setAnnouncementText("You need a Chip to place here");
                 }
-            }
-            if(issueGold){
-                if(Generic.gold >= 10){
-                    Menus.getInstance().setAnnouncementText("You added the required gold");
-                    GameObject.FindWithTag("IssueGold").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
-                    Generic.goldCompleted = true;
-                    Generic.tasksCompleted +=1;
-                }else{
-                    Menus.getInstance().setAnnouncementText("You don't have enough Gold (10)");
-                }
-            }
-            if(issueSilver){
-                if(Generic.silver >= 15){
-                    Menus.getInstance().setAnnouncementText("You added the required silver");
-                    GameObject.FindWithTag("IssueSilver").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
-                    Generic.silverCompleted = true;
-                    Generic.tasksCompleted +=1;
-                }else{
-                    Menus.getInstance().setAnnouncementText("You don't have enough Silver (15)");
-                }
-            }
-            if(issue3Area){
-                if(Generic.hasPump){
+            }else if(issue3Area){
+                if(Generic.pumpCompleted == true) return;
+                if(Generic.getInventory().hasItem("pump", 1)){
                     Menus.getInstance().setAnnouncementText("You replaced the broken Pump");
-                    GameObject.FindWithTag("Issue3").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.pumpCompleted = true;
-                    Generic.hasPump = false;
+                    Generic.getInventory().removeItem("pump", 1);
                     Generic.tasksCompleted +=1;
                 }else{
                     Menus.getInstance().setAnnouncementText("You need a Pump to place here");
                 }
+            }else if(ship2Chip){
+                if(Generic.chip2Completed == true) return;
+                if(Generic.getInventory().hasItem("chip", 1)){
+                    Menus.getInstance().setAnnouncementText("You replaced the broken Chip");
+                    Destroy(GameObject.FindWithTag("Ship2Chip"));
+                    Generic.chip2Completed = true;
+                    Generic.getInventory().removeItem("chip", 1);
+                    Generic.tasks2Completed +=1;
+                }else{
+                    Menus.getInstance().setAnnouncementText("You need a Chip to place here");
+                }
+            }else if(ship2Fuel){
+                if(Generic.fuel2Completed == true) return;
+                if(Generic.getInventory().hasItem("fuel", 2)){
+                    Menus.getInstance().setAnnouncementText("You added Fuel to the ship");
+                    Destroy(GameObject.FindWithTag("Ship2Fuel"));
+                    Generic.chip2Completed = true;
+                    Generic.getInventory().removeItem("fuel", 2);
+                    Generic.tasks2Completed +=1;
+                }else{
+                    Menus.getInstance().setAnnouncementText("You don't have enough Fuel (20)");
+                }
+            }else if(ship2Start){
+                if(Generic.tasks2Completed == 2){
+                    GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerWonGame");
+                }else{
+                    Menus.getInstance().setAnnouncementText("There are still tasks left to complete!");
+                }
             }
-            if(Generic.pumpCompleted && Generic.chipCompleted && Generic.fuelCompleted && Generic.goldCompleted && Generic.silverCompleted){
+            if(Generic.tasksCompleted == 3){
                 GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerWonGame");
             }
         }

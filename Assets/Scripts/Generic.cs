@@ -20,21 +20,15 @@ public static class Generic
     public static float stamina = 100;
 
     public static int axeTries = 0;
-    public static bool hasAxe = false;
-    public static bool hasChip = false;
-    public static int fuel = 0;
-    public static bool hasPump = false;
-    public static int gold = 0;
-    public static int silver = 0;
     public static bool fuelCompleted = false;
     public static bool chipCompleted = false;
+    public static bool pumpCompleted = false;
+
     public static bool fuel2Completed = false;
     public static bool chip2Completed = false;
-    public static bool pumpCompleted = false;
-    public static bool goldCompleted = false;
-    public static bool silverCompleted = false;
+
     public static int tasksCompleted = 0;
-    public static int tasksCompletedShip2 = 0;
+    public static int tasks2Completed = 0;
 
     public static LocationArea locationArea = LocationArea.MainShip;
     // public static bool hasShovel = false;

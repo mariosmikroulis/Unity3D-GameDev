@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CameraHandler : MonoBehaviour
 {
+    private static CameraHandler instance;
     public float mouseSensitivity = 300f;
     float x_rotation = 0f;
 
     public Transform playerBody;
- 
+
+    private void Awake() {
+        instance = this;
+    }
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -25,6 +30,10 @@ public class CameraHandler : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(x_rotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * x_mouse);
+    }
+
+    public static CameraHandler getInstance() {
+        return instance;
     }
 
     public float getMouseSensitivity() {

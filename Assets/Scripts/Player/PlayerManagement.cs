@@ -5,8 +5,18 @@ public class PlayerManagement : MonoBehaviour
     public float timer = 1.0f;
     public float healthRegeneration = 22f;
     public float staminaRegeneration = 0.5f;
+    private static PlayerManagement instance;
 
     private bool runningStatus = false;
+
+
+    private void Awake() {
+        instance = this;
+    }
+
+    public static PlayerManagement getInstance() {
+        return instance;
+    }
 
     // Controlls oxygen level and ends game when its 0
     void Update(){

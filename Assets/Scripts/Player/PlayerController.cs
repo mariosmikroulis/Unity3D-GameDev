@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviour
     public bool touchingFloor = true;
     public bool running = false;
 
-    public PlayerManagement playerManagement;
-
     public Material green;
 
     void OnMove(InputValue value) {
@@ -120,7 +118,7 @@ public class PlayerController : MonoBehaviour
     // Player Movement and Interactions
     void FixedUpdate(){
 
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        /*GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
@@ -154,7 +152,7 @@ public class PlayerController : MonoBehaviour
             if(!touchingFloor) return;
             GetComponent<Rigidbody>().AddForce(upDir * 5000f * Time.deltaTime,
                  ForceMode.Impulse);
-        }
+        }*/
         if (Input.GetKey("f"))
         {
             if(doorArea){
@@ -225,7 +223,7 @@ public class PlayerController : MonoBehaviour
             }
         }
    
-    	mouseMovement.x += Input.GetAxis("Mouse X")*350;
-        transform.localRotation = Quaternion.Euler(0, mouseMovement.x*Time.deltaTime,0);
+    	//mouseMovement.x += Input.GetAxis("Mouse X")*350;
+        //transform.localRotation = Quaternion.Euler(0, mouseMovement.x*Time.deltaTime,0);
     }
 }

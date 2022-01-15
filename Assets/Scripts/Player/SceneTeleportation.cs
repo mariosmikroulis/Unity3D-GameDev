@@ -9,7 +9,6 @@ public class SceneTeleportation : MonoBehaviour
     // teleportationId so we know where to teleport the player.
     public int teleportationId = 0;
     public bool isOutside = false;
-    public Text actionText;
     private bool isOnAnyPortal = false;
 
 
@@ -53,11 +52,6 @@ public class SceneTeleportation : MonoBehaviour
             return false;
         }
 
-        if(actionText == null) {
-            Debug.LogError("You haven't defined the necessary UI Text child to get this working!");
-            return false;
-        }
-
         return true;
     }
 
@@ -69,13 +63,11 @@ public class SceneTeleportation : MonoBehaviour
 
         isOnAnyPortal = true;
         
-        actionText.text = "PRESS [E] TO EXIT THE SPACESHIP.";
+        Menus.getInstance().setAnnouncementText("PRESS [E] TO EXIT THE SPACESHIP.");
 
         if(isOutside) {
-            actionText.text = "PRESS [E] TO ENTER THE SPACESHIP";
+            Menus.getInstance().setAnnouncementText("PRESS [E] TO ENTER THE SPACESHIP");
         }
-
-        actionText.enabled = true;
 
     }
 
@@ -85,7 +77,6 @@ public class SceneTeleportation : MonoBehaviour
         }
 
         isOnAnyPortal = false;
-        actionText.enabled = false;
-        actionText.text = "";
+        Menus.getInstance().setAnnouncementText("");
     }
 }

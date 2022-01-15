@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Mining : MonoBehaviour
 {
-    public Text actionText;
-
     private bool isInArea = false;
     private bool hasAxe = false;
     private bool isMining = false;
@@ -62,12 +60,10 @@ public class Mining : MonoBehaviour
         hasAxe = Generic.getInventory().hasItem("axe", 1);
         InventoryItem item = Generic.getInventory().getItem(materialName);
 
-        if(hasAxe)
-            actionText.text = "PRESS [F] TO MINE " + item.getName().ToUpper() + ".";
+        if (hasAxe)
+            Menus.getInstance().setAnnouncementText("PRESS [F] TO MINE " + item.getName().ToUpper() + ".");
         else
-            actionText.text = "YOU NEED A MINING AXE TO MINE THE " + item.getName().ToUpper() + " MATERIAL. TRY TO FIND IT SOMEWHERE!";
-
-        actionText.enabled = true;
+            Menus.getInstance().setAnnouncementText("YOU NEED A MINING AXE TO MINE THE " + item.getName().ToUpper() + " MATERIAL. TRY TO FIND IT SOMEWHERE!");
     }
 
     
@@ -80,14 +76,14 @@ public class Mining : MonoBehaviour
 
         // hide the text and set the script that the player is out of the area
         isInArea = false;
-        actionText.enabled = false;
+        Menus.getInstance().setAnnouncementText("");
     }
 
     // Quick thread creator to detect the reset of the pickup time.
     private IEnumerator pickup() {
         isMining = true;
 
-        actionText.text = "YOU ARE MINING...";
+        Menus.getInstance().setAnnouncementText("YOU ARE MINING...");
 
         // Delays depending on the difficulty level.
         if(Generic.difficultyLevelSet == 0) {
@@ -134,15 +130,14 @@ public class Mining : MonoBehaviour
         Generic.getInventory().addItem(materialName, amount);
         string txt = "YOU MINED " + amount + " " + Generic.getInventory().getItem(materialName).getName().ToUpper() + ".";
 
-        actionText.text = txt;
+        Menus.getInstance().setAnnouncementText(txt);
 
         // Wait for a few seconds while showing what item the item mined and the amount.
         yield return new WaitForSeconds(5.0f);
 
         // hide the text, if it is still the same, and hasn't changed.
-        if(actionText.text == txt) {
-            actionText.text = "";
-            actionText.enabled = false;
+        if(Menus.getInstance().getAnnouncementText() == txt) {
+            Menus.getInstance().setAnnouncementText("");
         }
     }
 }

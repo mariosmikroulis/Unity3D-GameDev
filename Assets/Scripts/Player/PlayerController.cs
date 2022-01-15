@@ -118,12 +118,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("f"))
         {
             if(ship2Entrance){
-                transform.position = new Vector3(181.274f, 2.4f, -7f);
+                transform.position = new Vector3(180f, 2.4f, -1f);
                 ship2Entrance = false;
                 Generic.setLocationArea(LocationArea.World);
             }
             if(ship2Exit){
-                transform.position = new Vector3(-9f, 14,39);
+                transform.position = new Vector3(-10f, 14.5f,-325.45f);
                 ship2Exit= false;
                 Generic.setLocationArea(LocationArea.World);
             }

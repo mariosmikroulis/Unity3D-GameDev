@@ -130,10 +130,15 @@ public class Menus : MonoBehaviour
         canvas.Find("PauseMenu").gameObject.SetActive(false);
         canvas.Find("Settings").gameObject.SetActive(true);
 
+        Debug.Log(SoundManager.getInstance().getMasterSoundVolume());
+        Debug.Log(SoundManager.getInstance().getMusicSoundVolume());
+        Debug.Log(SoundManager.getInstance().getSFXSoundVolume());
+        Debug.Log(CameraHandler.getInstance().getMouseSensitivity());
+
         masterSlider.value = SoundManager.getInstance().getMasterSoundVolume();
         musicSlider.value = SoundManager.getInstance().getMusicSoundVolume();
         sfxSlider.value = SoundManager.getInstance().getSFXSoundVolume();
-        mouseSensitivitySlider.value = SoundManager.getInstance().getMasterSoundVolume();
+        mouseSensitivitySlider.value = CameraHandler.getInstance().getMouseSensitivity();
     }
 
     public void closeSettings() {
@@ -145,6 +150,24 @@ public class Menus : MonoBehaviour
             canvas.Find("PauseMenu").gameObject.SetActive(true);
         }
     }
+
+    public void masterVolumeChanged() {
+        SoundManager.getInstance().setMasterSoundVolume(masterSlider.value);
+    }
+
+    public void musicVolumeChanged() {
+        SoundManager.getInstance().setMasterSoundVolume(musicSlider.value);
+    }
+
+    public void sfxVolumeChanged() {
+        SoundManager.getInstance().setMasterSoundVolume(sfxSlider.value);
+    }
+
+    public void mouseSensitivityChanged() {
+        CameraHandler.getInstance().setMouseSensitivity(mouseSensitivitySlider.value);
+    }
+
+
 
     // Load the new game story for the player to read.
     public void NewGame() {

@@ -243,11 +243,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MuteMasterSound: 0
-  MasterSoundVolume: 0
+  MasterSoundVolume: 1
   MuteMusicSound: 0
-  MusicSoundVolume: 0
+  MusicSoundVolume: 1
   MuteSFXSound: 0
-  SFXSoundVolume: 0
+  SFXSoundVolume: 1
   sounds:
   - name: StrongWind
     clip: {fileID: 0}

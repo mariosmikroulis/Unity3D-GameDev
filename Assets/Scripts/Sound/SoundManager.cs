@@ -67,6 +67,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     public void setMasterSoundVolume(float _volume) {
+        Debug.Log(_volume);
         if (_volume < .0f) {
             _volume = .0f;
         } else if (_volume > 1f) {

@@ -16,15 +16,7 @@ public class PlayerController : MonoBehaviour
     bool doorArea = false;
     bool doorAreaOutside = false;
 
-    public bool touchingFloor = true;
-    public bool running = false;
-
     public Material green;
-
-    void OnMove(InputValue value) {
-    	moveValue = value.Get<Vector2>();
-    	Cursor.lockState = CursorLockMode.Locked;
-    }
 
     // All areas which thee playe can inteact with
     void OnTriggerEnter(Collider other) {
@@ -68,14 +60,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionStay(Collision info){
-        
-    }
-    
-    void OnCollisionExit(){
-        touchingFloor = false;
-    }
-
 
     void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
@@ -117,42 +101,6 @@ public class PlayerController : MonoBehaviour
 
     // Player Movement and Interactions
     void FixedUpdate(){
-
-        /*GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-        Vector3 forwardDir = new Vector3(forward.x, 0, forward.z).normalized;
-        Vector3 rightDir = new Vector3(right.x, 0, right.z).normalized;
-        Vector3 upDir = new Vector3(0, 1, 0).normalized;
-
-
-        if (Input.GetKey("w"))
-        {
-            GetComponent<Rigidbody>().AddForce(forwardDir * 650f * Time.deltaTime,
-                 ForceMode.VelocityChange);
-        }
-        if (Input.GetKey("a"))
-        {
-            GetComponent<Rigidbody>().AddForce(rightDir * -450f * Time.deltaTime,
-                 ForceMode.VelocityChange);
-        }
-        if (Input.GetKey("s"))
-        {
-            GetComponent<Rigidbody>().AddForce(forwardDir * -450f * Time.deltaTime,
-                 ForceMode.VelocityChange);
-        }
-        if (Input.GetKey("d"))
-        {
-            GetComponent<Rigidbody>().AddForce(rightDir * 450f * Time.deltaTime,
-                 ForceMode.VelocityChange);
-        }
-        if (Input.GetKey("space"))
-        {
-            if(!touchingFloor) return;
-            GetComponent<Rigidbody>().AddForce(upDir * 5000f * Time.deltaTime,
-                 ForceMode.Impulse);
-        }*/
         if (Input.GetKey("f"))
         {
             if(doorArea){
@@ -222,8 +170,5 @@ public class PlayerController : MonoBehaviour
                 GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerWonGame");
             }
         }
-   
-    	//mouseMovement.x += Input.GetAxis("Mouse X")*350;
-        //transform.localRotation = Quaternion.Euler(0, mouseMovement.x*Time.deltaTime,0);
     }
 }

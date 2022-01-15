@@ -51,7 +51,7 @@ public class Menus : MonoBehaviour
         // It is the main screen. They can come back to it via the pause menu.
         if (SceneManager.GetActiveScene().name == "Menu") {
             isOnMainScreen = true;
-            canvas.gameObject.transform.Find("StartMenu").gameObject.SetActive(true);
+            canvas.Find("StartMenu").gameObject.SetActive(true);
             SoundManager.getInstance().stop("StrongWind");
             statusBar.gameObject.SetActive(false);
         } else {
@@ -118,11 +118,26 @@ public class Menus : MonoBehaviour
         canvas.Find("LostMenu").gameObject.SetActive(true);
     }
 
+    public void openSettings() {
+        canvas.Find("StartMenu").gameObject.SetActive(false);
+        canvas.Find("PauseMenu").gameObject.SetActive(false);
+        canvas.Find("Settings").gameObject.SetActive(true);
+    }
+
+    public void closeSettings() {
+        canvas.Find("Settings").gameObject.SetActive(false);
+
+        if(SceneManager.GetActiveScene().name == "Menu") {
+            canvas.Find("StartMenu").gameObject.SetActive(true);
+        } else {
+            canvas.Find("PauseMenu").gameObject.SetActive(true);
+        }
+    }
+
     // Load the new game story for the player to read.
     public void NewGame() {
         canvas.Find("StartMenu").gameObject.SetActive(false);
         canvas.Find("Intro01").gameObject.SetActive(true);
-
     }
 
     // go to the second text

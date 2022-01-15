@@ -15,6 +15,7 @@ public class MysteryBoxScript : MonoBehaviour
         if(!other.CompareTag("Player")) return;
         if(!active) return;
         inArea = true;
+
         Menus.getInstance().setAnnouncementText("Press [F] to open the box.");
     }
     //Player has left the collider

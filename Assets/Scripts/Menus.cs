@@ -168,6 +168,7 @@ public class Menus : MonoBehaviour
         Text obj = canvas.Find("ActionText").GetComponent<Text>();
 
         obj.enabled = (str != "");
+        canvas.Find("ActionText").gameObject.SetActive(str != "");
         obj.text = str;
     }
 
@@ -177,7 +178,6 @@ public class Menus : MonoBehaviour
 
     // Load the Game Scene.
     public void GoToMainScene() {
-        //canvas.gameObject.transform.Find("Intro04").gameObject.SetActive(false);
         SceneManager.LoadScene("SceneOutside");
     }
 }

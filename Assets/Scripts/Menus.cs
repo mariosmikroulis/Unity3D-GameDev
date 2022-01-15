@@ -49,6 +49,7 @@ public class Menus : MonoBehaviour
         instance = this;
     }
 
+    // Gets instance of menus
     public static Menus getInstance() {
         return instance;
     }
@@ -138,6 +139,7 @@ public class Menus : MonoBehaviour
         canvas.Find("LostMenu").gameObject.SetActive(true);
     }
 
+    // When player opens settings
     public void openSettings() {
         canvas.Find("StartMenu").gameObject.SetActive(false);
         canvas.Find("PauseMenu").gameObject.SetActive(false);
@@ -154,6 +156,7 @@ public class Menus : MonoBehaviour
         mouseSensitivitySlider.value = CameraHandler.getInstance().getMouseSensitivity();
     }
 
+    // When player closes settings
     public void closeSettings() {
         canvas.Find("Settings").gameObject.SetActive(false);
 

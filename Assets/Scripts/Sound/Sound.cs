@@ -25,35 +25,43 @@ public class Sound
     [HideInInspector]
     public AudioSource source;
 
+    //Return sound name
     public string getName() {
         return name;
     }
 
+    //Set sound name
     public void setName(string _name) {
         name = _name;
     }
 
+    //Get sound type
     public SoundType getType() {
         return type;
     }
 
+    //Set sound type
     public void setType(SoundType _type) {
         type = _type;
         setVolume(volume);
     }
 
+    //Gets sound clip
     public AudioClip getClip() {
         return clip;
     }
 
+    //Sets sound clip
     public void setClip(AudioClip _clip) {
         clip = _clip;
     }
 
+    //Gets sound pitch
     public float getPitch() {
         return pitch;
     }
 
+    //Sets sound pitch
     public void setPitch(float _pitch)
     {
         if (_pitch < .1f)
@@ -69,6 +77,7 @@ public class Sound
         source.pitch = _pitch;
     }
 
+    //Sets sound volume
     public void setVolume(float _volume) {
         SoundManager master = SoundManager.getInstance();
 
@@ -87,41 +96,50 @@ public class Sound
         }
     }
 
+    //Get the source volume of the sound
     public float getSourceVolume() {
         return source.volume;
     }
 
+    //Get the current volume
     public float getVolume() {
         return volume;
     }
 
+    //Toggles mute on the sound
     public void setMute(bool status) {
         mute = status;
         source.mute = isSourceMuted();
     }
 
+    //Checks if sound is muted
     public bool isMuted() {
         return mute == true;
     }
 
+    //Checks if source is muted
     public bool isSourceMuted() {
         SoundManager master = SoundManager.getInstance();
         return mute || master.isMasterSoundMuted() || type == SoundType.Music && master.isMusicSoundMuted() || type == SoundType.SFX && master.isSFXSoundMuted();
     }
 
+    //Allows sound to play in a loop
     public void setLoop(bool _loop) {
         loop = _loop;
         source.loop = _loop;
     }
 
+    //Checks if sound is on a loop
     public bool isLooped() {
         return loop == true;
     }
 
+    //Get sound AudioSource
     public AudioSource getSource() {
         return source;
     }
 
+    //Set sound AudioSource
     public void setSource(AudioSource _source) {
         source = _source;
 
@@ -134,6 +152,7 @@ public class Sound
         setMute(mute);
     }
 
+    //Sets a custom AudioSource
     public void setCustomSource() {
         source = custom.GetComponent<AudioSource>();
         clip = source.clip;
@@ -143,16 +162,19 @@ public class Sound
         setMute(source.mute);
     }
 
+    //Plays the sound
     public void playSound() {
         source.Play();
         play = true;
     }
 
+    //Stops the sound
     public void stopSound() {
         source.Stop();
         play = false;
     }
 
+    //Checks if sound is playing
     public bool isPlaying() {
         return source.isPlaying;
     }

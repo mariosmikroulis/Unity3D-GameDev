@@ -19,7 +19,8 @@ public class CameraHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
     }
- 
+    
+    // Handles camera movement
     void Update()
     {
         float x_mouse = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -32,14 +33,17 @@ public class CameraHandler : MonoBehaviour
         playerBody.Rotate(Vector3.up * x_mouse);
     }
 
+    // Gets instance of CameraHandler
     public static CameraHandler getInstance() {
         return instance;
     }
 
+    // Gets mouse sensitivity
     public float getMouseSensitivity() {
         return mouseSensitivity;
     }
 
+    // Sets mouse sensitivity
     public void setMouseSensitivity(float amount) {
         if(amount < 1) {
             amount = 1;

@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    // When player exits the areas
     void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Oxygen"){
             oxygenArea = false;

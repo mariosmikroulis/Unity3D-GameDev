@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
+
+    // Allows to control master sounds, SFX, Music
+
     // All global volume controllers.
     public bool MuteMasterSound = false;
     [Range(0f, 1f)]
@@ -20,6 +23,7 @@ public class SoundManager : MonoBehaviour {
 
     public static SoundManager instance;
 
+    // Gets the SoundManager instance
     public static SoundManager getInstance() {
         return instance;
     }
@@ -53,10 +57,12 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Checks if master sounnd is muted
     public bool isMasterSoundMuted() {
         return MuteMasterSound;
     }
 
+    // Mutes master sound
     public void setMasterSoundMuted(bool status) {
         MuteMasterSound = status;
 
@@ -65,10 +71,12 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Gets the volume of master sound
     public float getMasterSoundVolume() {
         return MasterSoundVolume;
     }
 
+    // Sets the volume of master sound
     public void setMasterSoundVolume(float _volume) {
         Debug.Log(_volume);
         if (_volume < .0f) {
@@ -84,10 +92,12 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Checks if music is muted
     public bool isMusicSoundMuted() {
         return MuteMusicSound;
     }
 
+    // Sets music to muted
     public void setMusicSoundMuted(bool status) {
         MuteMusicSound = status;
 
@@ -98,10 +108,12 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Gets music volume
     public float getMusicSoundVolume() {
         return MusicSoundVolume;
     }
 
+    // Sets music volume
     public void setMusicSoundVolume(float _volume) {
         if (_volume < .0f) {
             _volume = .0f;
@@ -116,10 +128,12 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Checks if SFX is muted
     public bool isSFXSoundMuted() {
         return MuteSFXSound;
     }
 
+    // Mutes SFX
     public void setSFXSoundMuted(bool status) {
         MuteSFXSound = status;
 
@@ -130,10 +144,12 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Gets SFX volume
     public float getSFXSoundVolume() {
         return SFXSoundVolume;
     }
 
+    // Sets SFX volume
     public void setSFXSoundVolume(float _volume) {
         if (_volume < .0f) {
             _volume = .0f;
@@ -148,10 +164,12 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Gets a sound by name
     public Sound getSound(string name) {
         return Array.Find(sounds, sound => sound.name == name);
     }
 
+    // Plays a sound by name
     public void play(string name) {
         try {
             foreach (Sound _sound in sounds) {
@@ -165,6 +183,7 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Toggles mute on a sound
     public void mute(string name, bool status) {
         try {
             foreach (Sound _sound in sounds) {
@@ -178,6 +197,7 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Stops a sound
     public void stop(string name) {
         try {
             foreach (Sound _sound in sounds) {
@@ -191,6 +211,7 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    // Sets volume on a sound
     public void setVolume(string name, float volume) {
         try {
             foreach (Sound _sound in sounds) {

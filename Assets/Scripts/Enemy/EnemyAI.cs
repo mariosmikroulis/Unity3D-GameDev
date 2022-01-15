@@ -15,10 +15,12 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     NavMeshAgent agent;
 
+    // Gets an enemy AI
     void Start() {
         agent = GetComponent<NavMeshAgent>();
     }
 
+    // Controls enemy movement and actions
     void Update() {
         float distance = Vector3.Distance(player.position, transform.position);
 
@@ -37,6 +39,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // Faces player
     void FaceTarget()
     {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -44,11 +47,13 @@ public class EnemyAI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
+    // Attacks player
     void attackPlayer() {
         Generic.removeHealth(attackDamage);
         attackCd = 1 / attackSpeed;
     }
 
+    // Draws circle for editor (not for game)
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

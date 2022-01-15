@@ -34,6 +34,7 @@ public class PlayerManagement : MonoBehaviour
         }
     }
 
+    // Sets run status to true when player is running
     public bool setRunningStatus(bool status)
     {
         bool old = runningStatus;
@@ -41,15 +42,18 @@ public class PlayerManagement : MonoBehaviour
         return old;
     }
 
+    // Gets running status of player
     public bool getRunningStatus()
     {
         return runningStatus;
     }
 
+    // Checks if player is recovering stamina
     public bool isRecoveryingStamina() {
         return recoverStamina;
     }
 
+    // Controls the oxygen, stamina
     void runTasks()
     {
         if (Generic.getLocationArea() != LocationArea.MainShip)

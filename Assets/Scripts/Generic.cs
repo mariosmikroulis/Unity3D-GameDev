@@ -28,10 +28,13 @@ public static class Generic
     public static int silver = 0;
     public static bool fuelCompleted = false;
     public static bool chipCompleted = false;
+    public static bool fuel2Completed = false;
+    public static bool chip2Completed = false;
     public static bool pumpCompleted = false;
     public static bool goldCompleted = false;
     public static bool silverCompleted = false;
     public static int tasksCompleted = 0;
+    public static int tasksCompletedShip2 = 0;
 
     public static LocationArea locationArea = LocationArea.MainShip;
     // public static bool hasShovel = false;
@@ -66,7 +69,8 @@ public static class Generic
         float old = curHealth;
 
         if(amount < 0) {
-            amount = 0;
+            GameObject.FindGameObjectWithTag("UI").gameObject.SendMessage("playerLostGame");
+            return old;
         } else if(amount > maxHealth) {
             amount = curHealth;
         }

@@ -118,12 +118,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("f"))
         {
             if(ship2Entrance){
-                transform.position = new Vector3(180f, 2.4f, -1f);
+                transform.position = new Vector3(183f, 2.4f, -1f);
                 ship2Entrance = false;
                 Generic.setLocationArea(LocationArea.World);
             }
             if(ship2Exit){
-                transform.position = new Vector3(-10f, 14.5f,-325.45f);
+                transform.position = new Vector3(10f, 14.5f,-325.45f);
                 ship2Exit= false;
                 Generic.setLocationArea(LocationArea.World);
             }
@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
                     Menus.getInstance().setAnnouncementText("You added Fuel to the ship.");
                     GameObject.FindWithTag("Issue1").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.fuelCompleted = true;
+                    Generic.fuel-=20;
                     Generic.tasksCompleted +=1;
                 }else{
                     Menus.getInstance().setAnnouncementText("You don't have enough Fuel (20)");
@@ -155,6 +156,7 @@ public class PlayerController : MonoBehaviour
                     Menus.getInstance().setAnnouncementText("You replaced the broken Chip");
                     GameObject.FindWithTag("Issue2").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.chipCompleted = true;
+                    Generic.hasChip = false;
                     Generic.tasksCompleted +=1;
                 }else{
                     Menus.getInstance().setAnnouncementText("You need a Chip to place here");
@@ -185,6 +187,7 @@ public class PlayerController : MonoBehaviour
                     Menus.getInstance().setAnnouncementText("You replaced the broken Pump");
                     GameObject.FindWithTag("Issue3").transform.parent.gameObject.GetComponent<MeshRenderer>().material = green;
                     Generic.pumpCompleted = true;
+                    Generic.hasPump = false;
                     Generic.tasksCompleted +=1;
                 }else{
                     Menus.getInstance().setAnnouncementText("You need a Pump to place here");

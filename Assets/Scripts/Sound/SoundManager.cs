@@ -75,6 +75,10 @@ public class SoundManager : MonoBehaviour {
         }
 
         MasterSoundVolume = _volume;
+
+        foreach (Sound _sound in sounds) {
+            _sound.setVolume(_sound.getVolume());
+        }
     }
 
     public bool isMusicSoundMuted() {
@@ -103,6 +107,10 @@ public class SoundManager : MonoBehaviour {
         }
 
         MusicSoundVolume = _volume;
+
+        foreach (Sound _sound in sounds) {
+            _sound.setVolume(_sound.getVolume());
+        }
     }
 
     public bool isSFXSoundMuted() {
@@ -131,6 +139,10 @@ public class SoundManager : MonoBehaviour {
         }
 
         SFXSoundVolume = _volume;
+
+        foreach (Sound _sound in sounds) {
+            _sound.setVolume(_sound.getVolume());
+        }
     }
 
     public Sound getSound(string name) {

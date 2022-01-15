@@ -152,21 +152,28 @@ public class Menus : MonoBehaviour
     }
 
     public void masterVolumeChanged() {
-        SoundManager.getInstance().setMasterSoundVolume(masterSlider.value);
+        if (SoundManager.getInstance()) {
+            SoundManager.getInstance().setMasterSoundVolume(masterSlider.value);
+        }
     }
 
     public void musicVolumeChanged() {
-        SoundManager.getInstance().setMasterSoundVolume(musicSlider.value);
+        if (SoundManager.getInstance()) {
+            SoundManager.getInstance().setMasterSoundVolume(musicSlider.value);
+        }
     }
 
     public void sfxVolumeChanged() {
-        SoundManager.getInstance().setMasterSoundVolume(sfxSlider.value);
+        if (SoundManager.getInstance()) {
+            SoundManager.getInstance().setMasterSoundVolume(sfxSlider.value);
+        }
     }
 
     public void mouseSensitivityChanged() {
-        CameraHandler.getInstance().setMouseSensitivity(mouseSensitivitySlider.value);
+        if (SoundManager.getInstance()) {
+            CameraHandler.getInstance().setMouseSensitivity(mouseSensitivitySlider.value);
+        }
     }
-
 
 
     // Load the new game story for the player to read.

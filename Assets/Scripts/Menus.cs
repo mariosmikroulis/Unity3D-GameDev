@@ -119,8 +119,17 @@ public class Menus : MonoBehaviour
         canvas.Find("WonMenu").gameObject.SetActive(true);
     }
 
+    public void playerWonGame2() {
+        forcePause = true;
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+
+        canvas.Find("WonMenu2").gameObject.SetActive(true);
+    }
+
     // actions to do when player loses
     // gameObject.SendMessage("playerLostGame");
+
     public void playerLostGame() {
         forcePause = true;
         Time.timeScale = 0;

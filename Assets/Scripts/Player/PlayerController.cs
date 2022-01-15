@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     bool issueGold = false;
     bool doorArea = false;
     bool doorAreaOutside = false;
+    bool ship2Entrance = false;
+    bool ship2Exit = false;
 
     public Material green;
 
@@ -53,6 +55,14 @@ public class PlayerController : MonoBehaviour
             doorAreaOutside = true;
             Menus.getInstance().setAnnouncementText("Press [F] to go in the ship");
         }
+        if(other.gameObject.tag == "Ship2Entrance"){
+            ship2Entrance = true;
+            Menus.getInstance().setAnnouncementText("Press [F] to go in the ship");
+        }
+        if(other.gameObject.tag == "Ship2Exit"){
+            ship2Exit = true;
+            Menus.getInstance().setAnnouncementText("Press [F] to go in the ship");
+        }
 
     }
 
@@ -93,12 +103,30 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Disabled"){
             Menus.getInstance().setAnnouncementText("");
         }
+        if(other.gameObject.tag == "Ship2Entrance"){
+            ship2Entrance = false;
+            Menus.getInstance().setAnnouncementText("");
+        }
+        if(other.gameObject.tag == "Ship2Exit"){
+            ship2Exit = false;
+            Menus.getInstance().setAnnouncementText("");
+        }
     }
 
     // Player Movement and Interactions
     void FixedUpdate(){
         if (Input.GetKey("f"))
         {
+            if(ship2Entrance){
+                transform.position = new Vector3(181.274f, 2.4f, -7f);
+                ship2Entrance = false;
+                Generic.setLocationArea(LocationArea.World);
+            }
+            if(ship2Exit){
+                transform.position = new Vector3(-9f, 14,39);
+                ship2Exit= false;
+                Generic.setLocationArea(LocationArea.World);
+            }
             if(doorArea){
                 transform.position = new Vector3(-9f, 14,39);
                 doorArea = false;

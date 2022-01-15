@@ -130,10 +130,6 @@ public class Menus : MonoBehaviour
         canvas.Find("PauseMenu").gameObject.SetActive(false);
         canvas.Find("Settings").gameObject.SetActive(true);
 
-        masterSlider = canvas.Find("MasterVolumeSlider").GetComponent<Slider>();
-        musicSlider = canvas.Find("MusicVolumeSlider").GetComponent<Slider>();
-        sfxSlider = canvas.Find("SFXVolumeSlider").GetComponent<Slider>();
-
         masterSlider.value = SoundManager.getInstance().getMasterSoundVolume();
         musicSlider.value = SoundManager.getInstance().getMusicSoundVolume();
         sfxSlider.value = SoundManager.getInstance().getSFXSoundVolume();

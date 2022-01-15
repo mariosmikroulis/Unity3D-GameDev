@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerManagement : MonoBehaviour
 {
-    public float timer = 1.0f;
+    private float timer = 1.0f;
     public float healthRegeneration = 22f;
     public float staminaRegeneration = 0.5f;
+    public bool recoverStamina = false;
     private static PlayerManagement instance;
 
     private bool runningStatus = false;
@@ -45,6 +46,10 @@ public class PlayerManagement : MonoBehaviour
         return runningStatus;
     }
 
+    public bool isRecoveryingStamina() {
+        return recoverStamina;
+    }
+
     void runTasks()
     {
         if (Generic.getLocationArea() != LocationArea.MainShip)
@@ -56,6 +61,12 @@ public class PlayerManagement : MonoBehaviour
 
         if (!runningStatus) {
             Generic.addStamina(staminaRegeneration);
+        }
+
+        if(Generic.getStamina() > 10) {
+            recoverStamina = false;
+        } else if(Generic.getStamina() < 5) {
+            recoverStamina = true;
         }
     }
 }

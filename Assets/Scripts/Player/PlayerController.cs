@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("f"))
         {
             if(doorArea){
-                transform.position = new Vector3(-2f, 14, 36);
+                transform.position = new Vector3(-9f, 14,39);
                 doorArea = false;
                 Generic.setLocationArea(LocationArea.World);
             }
